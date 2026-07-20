@@ -1,0 +1,79 @@
+aid: bank-of-queensland
+name: Bank of Queensland
+review:
+  question: Does Bank of Queensland expose a confirmed, live public CDR Product Reference Data (PRD) API, and does it run a broader third-party developer portal?
+  answer: true
+  date: '2026-07-20'
+  reviewer: API Evangelist
+  cdrPrdConfirmed: true
+  developerPortal: false
+findings:
+  summary: |
+    Bank of Queensland (BOQ) is an accredited Consumer Data Right (CDR) data
+    holder. Its public, unauthenticated Product Reference Data (PRD) API is
+    LIVE and confirmed: GET https://secure.api.boq.com.au/cds-au/v1/banking/products
+    returned HTTP 200 with an x-v: 3 response header and a JSON body containing
+    a data.products array (25 products across categories such as TERM_DEPOSITS).
+    This is the only public, developer-accessible API surface BOQ exposes.
+
+    BOQ does NOT run a third-party developer portal. developer.boq.com.au and
+    apis.boq.com.au do not resolve (connection failure). The bank's only public
+    "open banking" presence is a consumer-facing help page describing how
+    customers share data through Accredited Data Recipients - not a developer
+    onboarding, sandbox, or API-key program. There is no Up-style personal
+    banking developer API and no other documented public API.
+
+    Authorization model: the public PRD API is unauthenticated by CDR mandate.
+    All CONSUMER data sharing (accounts, transactions, balances) is gated behind
+    the regulated CDR / Accredited Data Recipient (ADR) model using OAuth2 /
+    OpenID Connect with FAPI-grade security and consumer OTP authentication;
+    those consumer endpoints are not open to arbitrary developers.
+
+    Spec provenance: no BOQ-proprietary OpenAPI/Swagger is published. The
+    harvested spec at openapi/bank-of-queensland-cds-banking-products-openapi.yml
+    is the SHARED DSB Consumer Data Standards "CDR Banking API" contract
+    (OpenAPI 3.0.3, DSB version 1.36.0), harvested verbatim from the official
+    ConsumerDataStandardsAustralia/standards repository and converted from JSON
+    to YAML without content changes. It is the industry-standard contract every
+    Australian ADI implements - NOT a bank-specific document. The public PRD
+    surface within it is /banking/products and /banking/products/{productId}.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://secure.api.boq.com.au/cds-au/v1
+      documented: true
+      note: Live CDR Product Reference Data API. GET /banking/products confirmed HTTP 200, header x-v 3, JSON data.products array.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket, GraphQL, or asynchronous API surface is documented.
+  endpointsConfirmedRest:
+    - GET https://secure.api.boq.com.au/cds-au/v1/banking/products
+    - GET https://secure.api.boq.com.au/cds-au/v1/banking/products/{productId}
+  authModel:
+    publicPrd: Unauthenticated (CDR PRD mandate - no API key required)
+    consumerData: OAuth2 / OpenID Connect (FAPI) via the CDR Accredited Data Recipient model
+  specProvenance: Shared DSB Consumer Data Standards CDR Banking API (OpenAPI 3.0.3, v1.36.0) - not a BOQ-proprietary contract.
+sources:
+  - url: https://secure.api.boq.com.au/cds-au/v1/banking/products
+    type: APIReference
+    note: Live PRD endpoint. Probed 2026-07-20 - HTTP 200, x-v 3, data.products array with 25 products.
+  - url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+    type: Documentation
+    note: BOQ consumer-facing Open Banking page (HTTP 200). Describes CDR data sharing via ADRs; no developer/API onboarding.
+  - url: https://consumerdatastandardsaustralia.github.io/standards/
+    type: APIReference
+    note: DSB Consumer Data Standards - the shared contract the BOQ PRD API conforms to.
+  - url: https://github.com/ConsumerDataStandardsAustralia/standards
+    type: OpenAPI
+    note: Source of the harvested DSB CDR Banking API OpenAPI (cds_banking.json, OpenAPI 3.0.3, v1.36.0).
+actions:
+  openapiHarvested: true
+  openapiPath: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+  openapiProvenance: DSB shared CDS standard (not bank-proprietary)
+  developerPortalFound: false
+  reason: |
+    BOQ's public API posture is limited to the mandated CDR Product Reference
+    Data API, which was confirmed live. No proprietary spec or developer portal
+    exists, so the authoritative DSB CDS Banking standard was harvested verbatim
+    and clearly labelled as the shared standard.

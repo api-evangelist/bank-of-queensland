@@ -1,0 +1,62 @@
+aid: bank-of-queensland
+url: https://raw.githubusercontent.com/api-evangelist/bank-of-queensland/refs/heads/main/apis.yml
+name: Bank of Queensland
+kind: company
+description: Bank of Queensland Limited (ASX code BOQ) is one of Australia's oldest
+  banks,
+  founded in Brisbane in 1874, and today an APRA-regulated authorised deposit-taking
+  institution (ADI) and ASX-listed regional retail and commercial bank - a publicly
+  listed company, not a customer-owned mutual. Its banking group includes the ME Bank,
+  Virgin Money Australia and BOQ Specialist brands. As an accredited Consumer Data
+  Right (CDR) data holder, BOQ exposes a public, unauthenticated Product Reference
+  Data (PRD) API that conforms to the Australian Consumer Data Standards, while
+  consumer data sharing runs through the regulated CDR / Accredited Data Recipient
+  (ADR) model with OAuth2 / OIDC (FAPI) authorization.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Financial
+- Banks
+- Open Banking
+- CDR
+- Consumer Banking
+- Australia
+- Product Reference Data
+- ADI
+created: '2026-07-20'
+modified: '2026-07-20'
+specificationVersion: '0.19'
+apis:
+- aid: bank-of-queensland:bank-of-queensland-cdr-product-reference-data-api
+  name: Bank of Queensland (BOQ) CDR Product Reference Data API
+  tags:
+  - CDR
+  - Open Banking
+  - Product Reference Data
+  - Banking
+  - Australia
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  baseURL: https://secure.api.boq.com.au/cds-au/v1
+  properties:
+  - url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
+    type: APIReference
+  - url: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Public, unauthenticated Consumer Data Right (CDR) Product Reference
+    Data API exposing BOQ's banking products (accounts, term deposits, loans, cards)
+    in machine-readable form under the Australian Consumer Data Standards. Confirmed
+    live at https://secure.api.boq.com.au/cds-au/v1/banking/products (HTTP 200, x-v
+    3) returning a data.products array. Endpoints - GET /banking/products and GET
+    /banking/products/{productId}.
+common:
+- type: Website
+  url: https://www.boq.com.au/
+- type: Documentation
+  url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+- type: LinkedIn
+  url: https://www.linkedin.com/company/bank-of-queensland
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
