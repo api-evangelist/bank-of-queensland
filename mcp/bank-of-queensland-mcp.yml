@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+# No official/hosted BOQ MCP server exists. This is a CANDIDATE tool list DERIVED
+# from the two public, unauthenticated Product Reference Data operations - the only
+# BOQ API surface an agent can call without CDR accreditation.
+server:
+  name: bank-of-queensland-prd
+  transport: http
+  url: null            # no published/hosted server
+  base: https://secure.api.boq.com.au/cds-au/v1
+  auth: none           # PRD is unauthenticated; x-v header required
+tools:
+  - name: list_banking_products
+    description: >-
+      List BOQ banking products openly offered to the market (accounts, term
+      deposits, loans, cards). Supports effective, updated-since, brand,
+      product-category filters and page/page-size pagination.
+    source_operation: openapi/bank-of-queensland-cds-banking-products-openapi.yml#listBankingProducts
+    http: GET /banking/products
+  - name: get_banking_product_detail
+    description: Obtain detailed information on a single BOQ product by productId.
+    source_operation: openapi/bank-of-queensland-cds-banking-products-openapi.yml#getBankingProductDetail
+    http: GET /banking/products/{productId}
+notes: >-
+  The authenticated CDR consumer-data operations (accounts, balances,
+  transactions, payees, payments) are intentionally excluded - they require
+  ACCC accreditation as a CDR Accredited Data Recipient and cannot be exposed
+  as open MCP tools.

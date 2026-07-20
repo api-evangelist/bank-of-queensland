@@ -1,0 +1,31 @@
+# Bank of Queensland (BOQ)
+
+> Bank of Queensland Limited (ASX: BOQ) is one of Australia's oldest banks, founded in Brisbane in 1874, and an APRA-regulated authorised deposit-taking institution (ADI). Its banking group includes ME Bank, Virgin Money Australia and BOQ Specialist. As an accredited Consumer Data Right (CDR) data holder, BOQ exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the Australian Consumer Data Standards. Consumer data sharing runs through the regulated CDR / Accredited Data Recipient (ADR) model with OAuth2/OIDC (FAPI).
+
+## APIs
+
+- [BOQ CDR Product Reference Data API](https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking): Public, unauthenticated PRD API - GET /banking/products and /banking/products/{productId}. Live base: https://secure.api.boq.com.au/cds-au/v1 (confirmed HTTP 200, x-v 3).
+
+## Specs
+
+- [OpenAPI (DSB CDS CDR Banking API v1.36.0)](openapi/bank-of-queensland-cds-banking-products-openapi.yml): Shared Consumer Data Standards contract implemented by BOQ (harvested verbatim, not bank-proprietary).
+- [OpenAPI Overlay](overlays/bank-of-queensland-cds-banking-products-overlay.yaml): API Evangelist enhancement metadata.
+
+## Artifacts
+
+- [Authentication profile](authentication/bank-of-queensland-authentication.yml): Public PRD (none) + CDR ADR (OAuth2/OIDC/FAPI/MTLS).
+- [API conventions](conventions/bank-of-queensland-conventions.yml): x-v versioning, page/page-size pagination, filters, CDS error envelope.
+- [Error catalog](errors/bank-of-queensland-problem-types.yml): CDS ResponseErrorListV2 / urn:au-cds error codes.
+- [Conformance](conformance/bank-of-queensland-conformance.yml): Consumer Data Standards, OAuth2/OIDC/FAPI, MTLS, pagination.
+- [Lifecycle](lifecycle/bank-of-queensland-lifecycle.yml): CDS header versioning; no public developer status page.
+- [Data model](data-model/bank-of-queensland-data-model.yml): BankingProduct entity graph.
+- [MCP (candidate)](mcp/bank-of-queensland-mcp.yml): Candidate PRD tools.
+- [Agent Skill](skills/bank-of-queensland-product-reference.md): Look up BOQ banking products.
+- [Domain security](security/bank-of-queensland-domain-security.yml): TLS/HSTS/DNSSEC/SPF/DMARC probe.
+
+## Docs
+
+- [BOQ Open Banking (CDR)](https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking)
+- [Consumer Data Standards](https://consumerdatastandardsaustralia.github.io/standards/)
+- [Privacy policy](https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/)
+- [Terms and conditions](https://www.boq.com.au/important-information/terms-and-conditions)

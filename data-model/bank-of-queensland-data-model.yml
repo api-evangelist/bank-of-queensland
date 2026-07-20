@@ -1,0 +1,64 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+# Entity-relationship graph DERIVED from the CDR Banking API schemas. Scoped to
+# the public Product Reference Data domain (the developer-accessible surface).
+entities:
+  - name: BankingProduct
+    id_field: productId
+    key_schemas: [BankingProductV6, BankingProductListV4]
+    description: A banking product openly offered to the market (from GET /banking/products).
+  - name: BankingProductDetail
+    id_field: productId
+    key_schemas: [BankingProductDetailV7, BankingProductByIdV7]
+    description: >-
+      Full product detail (from GET /banking/products/{productId}) embedding the
+      feature/constraint/fee/deposit-rate/lending-rate/eligibility/bundle arrays.
+  - name: BankingProductFeature
+    key_schemas: [BankingProductFeatureV4]
+    description: Generic product feature element (featureType + additionalValue).
+  - name: BankingProductConstraint
+    key_schemas: [BankingProductConstraintV3]
+    description: Product constraint (e.g. MIN_BALANCE, MAX_LIMIT).
+  - name: BankingProductFee
+    key_schemas: [BankingProductFeeV2]
+    description: A fee associated with the product (with optional discounts).
+  - name: BankingProductDepositRate
+    key_schemas: [BankingProductDepositRateV2]
+    description: Deposit interest rate tier for the product.
+  - name: BankingProductLendingRate
+    key_schemas: [BankingProductLendingRateV3]
+    description: Lending interest rate tier for the product.
+  - name: BankingProductEligibility
+    key_schemas: [BankingProductEligibilityV2]
+    description: Eligibility criterion for the product.
+relationships:
+  - from: BankingProductDetail
+    to: BankingProductFeature
+    type: has_many
+    via: features
+  - from: BankingProductDetail
+    to: BankingProductConstraint
+    type: has_many
+    via: constraints
+  - from: BankingProductDetail
+    to: BankingProductFee
+    type: has_many
+    via: fees
+  - from: BankingProductDetail
+    to: BankingProductDepositRate
+    type: has_many
+    via: depositRates
+  - from: BankingProductDetail
+    to: BankingProductLendingRate
+    type: has_many
+    via: lendingRates
+  - from: BankingProductDetail
+    to: BankingProductEligibility
+    type: has_many
+    via: eligibility
+notes: >-
+  There is deliberately no id linking a BankingAccount to the BankingProduct it
+  originated from - the CDS regime keeps product and account payloads separate
+  (productCategory is the only shared field). Account/transaction/payee entities
+  belong to the authenticated CDR consumer-data domain and are out of scope here.

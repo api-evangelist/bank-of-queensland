@@ -1,0 +1,8 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+skills:
+  - file: bank-of-queensland-product-reference.md
+    name: Look up Bank of Queensland banking products (CDR PRD)
+    api: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+    operations: [listBankingProducts, getBankingProductDetail]

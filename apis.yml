@@ -23,7 +23,7 @@ tags:
 - Product Reference Data
 - ADI
 created: '2026-07-20'
-modified: '2026-07-20'
+modified: '2026-07-20T18:45:00Z'
 specificationVersion: '0.19'
 apis:
 - aid: bank-of-queensland:bank-of-queensland-cdr-product-reference-data-api
@@ -51,10 +51,40 @@ apis:
     3) returning a data.products array. Endpoints - GET /banking/products and GET
     /banking/products/{productId}.
 common:
+- type: DomainSecurity
+  url: security/bank-of-queensland-domain-security.yml
+- type: Authentication
+  url: authentication/bank-of-queensland-authentication.yml
+- type: Conventions
+  url: conventions/bank-of-queensland-conventions.yml
+- type: ErrorCatalog
+  url: errors/bank-of-queensland-problem-types.yml
+- type: Conformance
+  url: conformance/bank-of-queensland-conformance.yml
+- type: Compliance
+  url: conformance/bank-of-queensland-conformance.yml
+- type: Lifecycle
+  url: lifecycle/bank-of-queensland-lifecycle.yml
+- type: DataModel
+  url: data-model/bank-of-queensland-data-model.yml
+- type: MCPServer
+  url: mcp/bank-of-queensland-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/bank-of-queensland-cds-banking-products-overlay.yaml
+- type: LLMsTxt
+  url: llms/bank-of-queensland-llms.txt
 - type: Website
   url: https://www.boq.com.au/
 - type: Documentation
   url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+- type: Support
+  url: https://www.boq.com.au/help-and-support
+- type: PrivacyPolicy
+  url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
+- type: TermsOfService
+  url: https://www.boq.com.au/important-information/terms-and-conditions
 - type: LinkedIn
   url: https://www.linkedin.com/company/bank-of-queensland
 maintainers:

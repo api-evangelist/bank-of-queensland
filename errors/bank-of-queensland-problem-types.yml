@@ -1,0 +1,74 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#error-codes
+# BOQ's CDR Banking API returns errors in the Consumer Data Standards (CDS)
+# ResponseErrorListV2 envelope - NOT RFC 9457 problem+json. Each error carries a
+# CDR-standard URN code, a human title, a detail string, and an optional meta object.
+# Codes below are DERIVED from the 4xx responses declared in the harvested DSB spec
+# and enriched with the canonical urn:au-cds:error registry from the CDS docs.
+format: cds-responseerrorlistv2
+envelope:
+  media_type: application/json
+  shape: '{ "errors": [ { "code": "urn:au-cds:error:...", "title": "...", "detail": "...", "meta": {} } ] }'
+  note: >-
+    Consumer Data Standards error format. Not RFC 9457. The public Product
+    Reference Data endpoints (GET /banking/products, /banking/products/{productId})
+    surface only the common/pagination/header error classes; the account,
+    transaction, balance, payee and payment error classes apply to the
+    authenticated CDR consumer-data endpoints, which are gated behind the
+    Accredited Data Recipient (ADR) OAuth2/FAPI model and not open to
+    arbitrary developers.
+problems:
+  - code: urn:au-cds:error:cds-all:Field/InvalidField
+    status: 400
+    title: Invalid Field
+    detail: A supplied field failed schema/format validation.
+    source_operations: [listBankingProducts, listBankingAccounts, listBankingTransactions]
+  - code: urn:au-cds:error:cds-all:Field/MissingRequiredField
+    status: 400
+    title: Missing Required Field
+    detail: A field required for the request was not supplied.
+    source_operations: [listBankingProducts]
+  - code: urn:au-cds:error:cds-all:Field/Invalid
+    status: 400
+    title: Invalid Date
+    detail: A date/time field (e.g. updated-since) was not a valid DateTimeString.
+    source_operations: [listBankingProducts]
+  - code: urn:au-cds:error:cds-all:Header/MissingRequiredHeader
+    status: 400
+    title: Missing Required Header
+    detail: A mandatory header (e.g. x-v) was not supplied.
+    source_operations: [listBankingProducts, getBankingProductDetail]
+  - code: urn:au-cds:error:cds-all:Header/InvalidVersion
+    status: 400
+    title: Invalid Version
+    detail: The x-v (or x-min-v) header was not a valid positive integer.
+    source_operations: [listBankingProducts, getBankingProductDetail]
+  - code: urn:au-cds:error:cds-all:Header/UnsupportedVersion
+    status: 406
+    title: Unsupported Version
+    detail: >-
+      None of the requested endpoint versions between x-min-v and x-v are
+      supported by the data holder. Endpoint MUST respond 406 Not Acceptable.
+    source_operations: [listBankingProducts, getBankingProductDetail]
+  - code: urn:au-cds:error:cds-all:Pagination/InvalidPageSize
+    status: 400
+    title: Invalid Page Size
+    detail: The page-size query parameter was outside the permitted range.
+    source_operations: [listBankingProducts]
+  - code: urn:au-cds:error:cds-all:Pagination/InvalidPage
+    status: 422
+    title: Invalid Page
+    detail: The requested page number is beyond the available result set.
+    source_operations: [listBankingProducts]
+  - code: urn:au-cds:error:cds-all:Resource/NotFound
+    status: 404
+    title: Resource Not Found
+    detail: The requested productId does not identify a known product.
+    source_operations: [getBankingProductDetail]
+  - code: urn:au-cds:error:cds-banking:Resource/Unavailable
+    status: 400
+    title: Unavailable Resource
+    detail: The requested resource exists but is not currently available.
+    source_operations: [getBankingProductDetail]

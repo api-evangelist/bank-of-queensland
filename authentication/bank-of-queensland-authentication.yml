@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+docs: https://consumerdatastandardsaustralia.github.io/standards/#security-profile
+# The harvested DSB CDS contract declares no securitySchemes (derive-authentication.py
+# returned an empty profile), so this profile is hand-authored from BOQ's public
+# CDR posture. It captures the two-tier CDR authorization model.
+summary:
+  types: [none, oauth2, openIdConnect, mutualTLS]
+  public_prd_auth: none
+  consumer_data_auth: oauth2-oidc-fapi
+schemes:
+  - name: PublicProductReferenceData
+    type: none
+    applies_to: [listBankingProducts, getBankingProductDetail]
+    description: >-
+      The Product Reference Data (PRD) endpoints are unauthenticated by CDR
+      mandate - no API key, token, or client registration is required. Only the
+      mandatory x-v version header must be supplied. Confirmed live at
+      https://secure.api.boq.com.au/cds-au/v1/banking/products (HTTP 200).
+  - name: CDRAccreditedDataRecipient
+    type: oauth2
+    scheme: authorizationCode
+    fapi_profile: FAPI 1.0 Advanced (Australia CDR security profile)
+    token_binding: mutualTLS (MTLS-bound access tokens)
+    consumer_authentication: OTP-based consumer authorization (CDR authentication flows)
+    applies_to:
+      - listBankingAccounts
+      - getBankingAccountDetail
+      - getBankingBalance
+      - listBankingTransactions
+      - getBankingTransactionDetail
+      - listBankingPayees
+      - listScheduledPayments
+      - listDirectDebits
+    description: >-
+      All consumer data sharing (accounts, balances, transactions, payees,
+      scheduled payments, direct debits) is gated behind the regulated CDR
+      Accredited Data Recipient model: OAuth2 authorization-code with OpenID
+      Connect, FAPI-grade security and MTLS-bound tokens. Access is restricted
+      to ACCC-accredited data recipients - not open to arbitrary developers.

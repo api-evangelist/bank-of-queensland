@@ -1,0 +1,59 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#introduction
+# Cross-cutting request/response semantics for BOQ's CDR Banking API. These are
+# the mandated Australian Consumer Data Standards (CDS) conventions, DERIVED from
+# the harvested DSB spec and confirmed against the live PRD endpoint (x-v: 3).
+authentication:
+  public_prd: none            # GET /banking/products* is unauthenticated by CDR mandate
+  consumer_data: oauth2-oidc-fapi   # accounts/transactions/balances via CDR ADR model
+  see: authentication/bank-of-queensland-authentication.yml
+versioning:
+  style: header-per-endpoint
+  request_headers:
+    x-v: Requested endpoint version (positive integer, REQUIRED on every call).
+    x-min-v: Minimum acceptable endpoint version (optional).
+  response_header:
+    x-v: The endpoint version actually served.
+  negotiation: >-
+    The holder serves the highest supported version between x-min-v and x-v.
+    If none of the requested versions are supported it MUST return 406
+    Unsupported Version. GET /banking/products confirmed live serving x-v 3.
+  see: lifecycle/bank-of-queensland-lifecycle.yml
+pagination:
+  style: page-number
+  request_params:
+    page: Page of results to request (default 1).
+    page-size: Results per page (default 25).
+  response_fields:
+    meta.totalRecords: Total number of records across all pages.
+    meta.totalPages: Total number of pages.
+    links.self: URI of the current page.
+    links.first: URI of the first page.
+    links.prev: URI of the previous page (absent on first page).
+    links.next: URI of the next page (absent on last page).
+    links.last: URI of the last page.
+idempotency:
+  supported: false
+  note: >-
+    The public PRD surface is read-only (GET only), so no idempotency-key
+    contract applies. Write operations are not part of the CDR data-holder
+    surface exposed to developers.
+filtering:
+  updated-since: Return only products updated after the supplied DateTimeString.
+  effective: CURRENT | FUTURE | ALL - filter by product effective window.
+  product-category: Filter by BankingProductCategory enum.
+  brand: Filter by product brand (e.g. BOQ, ME Bank, Virgin Money, BOQ Specialist).
+error_envelope:
+  format: cds-responseerrorlistv2
+  see: errors/bank-of-queensland-problem-types.yml
+rate_limiting:
+  documented: false
+  note: >-
+    The Consumer Data Standards define traffic-threshold obligations for
+    authenticated CDR calls; the unauthenticated PRD endpoint does not publish
+    explicit rate-limit response headers.
+transport:
+  public_prd_base: https://secure.api.boq.com.au/cds-au/v1
+  tls: TLS 1.2+ (non-mutual for public PRD; MTLS for consumer-data endpoints).

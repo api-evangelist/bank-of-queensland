@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+# Lifecycle posture for BOQ's CDR Banking API. Versioning follows the mandated
+# Consumer Data Standards header-based endpoint versioning; BOQ publishes no
+# dedicated developer status page or bank-specific deprecation policy (its API
+# lifecycle tracks the DSB standard's release train).
+versioning:
+  scheme: header-per-endpoint      # x-v / x-min-v request headers, x-v response header
+  standard_version: 1.36.0         # DSB CDS Banking API version of the harvested contract
+  products_endpoint_version: 3     # x-v served live by GET /banking/products
+  docs: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+deprecation:
+  policy_url: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+  mechanism: >-
+    Endpoint versions are retired through the CDS version-negotiation model; the
+    products payload marks products obsolete via effectiveFrom/effectiveTo rather
+    than deleting them. Obsolete GET Products versions v1-v4 are published by DSB.
+  sunset_header: false
+  note: BOQ does not publish a bank-specific deprecation/Sunset-header policy; it follows the DSB standard.
+sla:
+  documented: false
+  note: No public developer SLA; CDR performance/availability obligations are set by regulation.
+status_page:
+  url: null
+  note: >-
+    BOQ runs no public developer status/uptime page. developer.boq.com.au and
+    apis.boq.com.au do not resolve; the only public API surface is the mandated PRD endpoint.
+deprecated_operations: []

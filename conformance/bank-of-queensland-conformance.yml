@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/
+# Which industry / cross-cutting standards BOQ's CDR Banking API conforms to.
+# Conformance is DERIVED from the harvested DSB CDS contract and BOQ's public
+# posture as an accredited Consumer Data Right data holder (public CDR register).
+standards:
+  - id: consumer-data-standards-au
+    conforms: true
+    evidence: >-
+      Implements the DSB Consumer Data Standards CDR Banking API (OpenAPI 3.0.3,
+      v1.36.0). Public PRD endpoint confirmed live serving x-v 3.
+  - id: cdr-banking-prd
+    conforms: true
+    evidence: GET /banking/products and /banking/products/{productId} live and unauthenticated.
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Consumer data sharing runs through the CDR Accredited Data Recipient model
+      using OAuth2 authorization (not exposed in the public PRD spec).
+  - id: oidc
+    conforms: true
+    evidence: CDR consumer authorization uses OpenID Connect.
+  - id: fapi
+    conforms: true
+    evidence: >-
+      CDR mandates FAPI-grade security (FAPI 1.0 Advanced / Australia CDR profile)
+      for consumer-data endpoints and MTLS-bound tokens.
+  - id: mtls
+    conforms: true
+    evidence: Consumer-data server declared as MTLS (mtls.dh.example.com/cds-au/v1 in the standard).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use the CDS ResponseErrorListV2 envelope with urn:au-cds error codes,
+      not application/problem+json.
+  - id: pagination
+    conforms: true
+    evidence: Standard page/page-size pagination with meta.totalRecords + links.next/prev.
+  - id: json
+    conforms: true
+    evidence: All responses are application/json.
+compliance_program:
+  cdr_accredited_data_holder: true
+  regulator: APRA-regulated authorised deposit-taking institution (ADI)
+  register: https://www.cdr.gov.au/find-a-provider
+  note: >-
+    BOQ is an accredited CDR data holder on the public Consumer Data Right
+    register and an APRA-regulated ADI (ASX: BOQ). This is a published regulatory
+    compliance posture rather than a SOC 2 / ISO 27001-style certification page.

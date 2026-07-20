@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bank of Queensland CDR Banking API
+  version: 1.0.0
+# Captures API Evangelist's enrichment metadata over the harvested DSB CDS
+# contract. The original openapi/ file is never mutated.
+extends: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: bank-of-queensland
+      x-apievangelist-spec-provenance: >-
+        Shared DSB Consumer Data Standards CDR Banking API (v1.36.0), not a
+        BOQ-proprietary contract.
+      x-apievangelist-public-surface:
+        - listBankingProducts
+        - getBankingProductDetail
+      x-apievangelist-live-base: https://secure.api.boq.com.au/cds-au/v1
+  - target: $.paths['/banking/products'].get
+    update:
+      x-apievangelist-access: public-unauthenticated
+      x-apievangelist-confirmed-live: '2026-07-20 (HTTP 200, x-v 3)'
+  - target: $.paths['/banking/products/{productId}'].get
+    update:
+      x-apievangelist-access: public-unauthenticated
