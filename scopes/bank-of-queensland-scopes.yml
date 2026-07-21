@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+docs: https://consumerdatastandardsaustralia.github.io/standards/#authorisation-scopes
+# The harvested DSB CDS Banking contract declares no oauth2 securitySchemes, so the
+# derive pass returned empty. These authorisation scopes are the mandated Australian
+# Consumer Data Right (CDR) banking scopes that BOQ, as an accredited data holder,
+# implements verbatim. The public Product Reference Data (PRD) surface needs NO scope
+# (unauthenticated); every scope below gates the consumer-authorized data-sharing APIs
+# accessed through the CDR / Accredited Data Recipient (ADR) model (OAuth2 + OIDC/FAPI,
+# authorization_code, MTLS-bound tokens). Authorization and token endpoints are the
+# holder's per-brand CDR InfoSec endpoints discovered via OIDC (not openly published).
+schemes:
+  - name: CDRAuthorizationCode
+    type: oauth2
+    flow: authorizationCode
+    fapi_profile: FAPI 1.0 Advanced (Australia CDR security profile)
+    source: docs
+scopes:
+  - scope: openid
+    description: OpenID Connect authentication (required for the CDR authorization flow).
+    flows: [authorizationCode]
+  - scope: profile
+    description: CDR consumer profile scope requested alongside the data scopes.
+    flows: [authorizationCode]
+  - scope: bank:accounts.basic:read
+    description: Read basic account information (account list and masked identifiers).
+    grants: [listBankingAccounts, getBankingBalance]
+    flows: [authorizationCode]
+  - scope: bank:accounts.detail:read
+    description: Read detailed account information including full account numbers and features.
+    grants: [getBankingAccountDetail]
+    flows: [authorizationCode]
+  - scope: bank:transactions:read
+    description: Read account transaction history and transaction detail.
+    grants: [listBankingTransactions, getBankingTransactionDetail]
+    flows: [authorizationCode]
+  - scope: bank:payees:read
+    description: Read saved payees for the consumer's accounts.
+    grants: [listBankingPayees]
+    flows: [authorizationCode]
+  - scope: bank:regular_payments:read
+    description: Read direct debits and scheduled/regular payments.
+    grants: [listDirectDebits, listScheduledPayments]
+    flows: [authorizationCode]
+  - scope: common:customer.basic:read
+    description: Read basic customer information (name and contact type).
+    flows: [authorizationCode]
+  - scope: common:customer.detail:read
+    description: Read detailed customer information including contact details.
+    flows: [authorizationCode]

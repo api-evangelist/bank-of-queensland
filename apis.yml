@@ -23,7 +23,7 @@ tags:
 - Product Reference Data
 - ADI
 created: '2026-07-20'
-modified: '2026-07-21T12:10:00Z'
+modified: '2026-07-21T18:00:00Z'
 specificationVersion: '0.19'
 apis:
 - aid: bank-of-queensland:bank-of-queensland-cdr-product-reference-data-api
@@ -161,6 +161,10 @@ apis:
     - it is not openly callable. Endpoints are defined by the shared DSB CDR Banking
     API standard, not a BOQ-proprietary contract.
 common:
+- type: AgenticAccess
+  url: agentic-access/bank-of-queensland-agentic-access.yml
+- type: OAuthScopes
+  url: scopes/bank-of-queensland-scopes.yml
 - type: DomainSecurity
   url: security/bank-of-queensland-domain-security.yml
 - type: Authentication
