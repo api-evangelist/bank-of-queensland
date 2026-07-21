@@ -23,7 +23,7 @@ tags:
 - Product Reference Data
 - ADI
 created: '2026-07-20'
-modified: '2026-07-20T18:45:00Z'
+modified: '2026-07-21T12:10:00Z'
 specificationVersion: '0.19'
 apis:
 - aid: bank-of-queensland:bank-of-queensland-cdr-product-reference-data-api
@@ -35,10 +35,10 @@ apis:
   - Banking
   - Australia
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
-  baseURL: https://secure.api.boq.com.au/cds-au/v1
+  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
+  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/products
   properties:
-  - url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  - url: https://www.boq.com.au/personal/banking/openbanking/developers
     type: Documentation
   - url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
     type: APIReference
@@ -49,7 +49,117 @@ apis:
     in machine-readable form under the Australian Consumer Data Standards. Confirmed
     live at https://secure.api.boq.com.au/cds-au/v1/banking/products (HTTP 200, x-v
     3) returning a data.products array. Endpoints - GET /banking/products and GET
-    /banking/products/{productId}.
+    /banking/products/{productId}. This is the only openly callable CDR surface; all
+    other Banking families below require consumer authorization via the CDR / ADR model.
+- aid: bank-of-queensland:bank-of-queensland-cdr-accounts-balances-api
+  name: Bank of Queensland (BOQ) CDR Accounts & Balances API
+  tags:
+  - CDR
+  - Open Banking
+  - Accounts
+  - Balances
+  - Banking
+  - Australia
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
+  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/accounts
+  properties:
+  - url: https://www.boq.com.au/personal/banking/openbanking/developers
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
+    type: APIReference
+  - url: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized Consumer Data Right (CDR) Accounts and Balances
+    API. Under the Australian Consumer Data Standards banking surface that BOQ is
+    legally required to implement, this family covers Get Accounts (GET /banking/accounts),
+    Get Account Detail (GET /banking/accounts/{accountId}), Get Bulk Balances (GET
+    /banking/accounts/balances), and Get Account Balance (GET /banking/accounts/{accountId}/balance).
+    Access requires a consented, authorized session through the regulated CDR /
+    Accredited Data Recipient (ADR) model using OAuth2 / OIDC (FAPI) and MTLS - it
+    is not openly callable. Endpoints are defined by the shared DSB CDR Banking API
+    standard, not a BOQ-proprietary contract.
+- aid: bank-of-queensland:bank-of-queensland-cdr-transactions-api
+  name: Bank of Queensland (BOQ) CDR Transactions API
+  tags:
+  - CDR
+  - Open Banking
+  - Transactions
+  - Banking
+  - Australia
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
+  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/accounts
+  properties:
+  - url: https://www.boq.com.au/personal/banking/openbanking/developers
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
+    type: APIReference
+  - url: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized Consumer Data Right (CDR) Transactions API. Part
+    of the Australian Consumer Data Standards banking surface that BOQ implements as
+    an accredited data holder, this family covers Get Transactions For Account (GET
+    /banking/accounts/{accountId}/transactions) and Get Transaction Detail (GET
+    /banking/accounts/{accountId}/transactions/{transactionId}). Access requires a
+    consented, authorized session through the regulated CDR / Accredited Data
+    Recipient (ADR) model using OAuth2 / OIDC (FAPI) and MTLS - it is not openly
+    callable. Endpoints are defined by the shared DSB CDR Banking API standard.
+- aid: bank-of-queensland:bank-of-queensland-cdr-direct-debits-scheduled-payments-api
+  name: Bank of Queensland (BOQ) CDR Direct Debits & Scheduled Payments API
+  tags:
+  - CDR
+  - Open Banking
+  - Direct Debits
+  - Scheduled Payments
+  - Banking
+  - Australia
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
+  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/accounts
+  properties:
+  - url: https://www.boq.com.au/personal/banking/openbanking/developers
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
+    type: APIReference
+  - url: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized Consumer Data Right (CDR) Direct Debits and
+    Scheduled Payments API. Part of the Australian Consumer Data Standards banking
+    surface BOQ implements, this family covers Get Direct Debits For Account (GET
+    /banking/accounts/{accountId}/direct-debits), Get Bulk Direct Debits (GET
+    /banking/accounts/direct-debits), Get Scheduled Payments For Account (GET
+    /banking/accounts/{accountId}/payments/scheduled), and Get Bulk Scheduled
+    Payments (GET /banking/payments/scheduled). Access requires a consented,
+    authorized session through the regulated CDR / Accredited Data Recipient (ADR)
+    model using OAuth2 / OIDC (FAPI) and MTLS - it is not openly callable. Endpoints
+    are defined by the shared DSB CDR Banking API standard.
+- aid: bank-of-queensland:bank-of-queensland-cdr-payees-api
+  name: Bank of Queensland (BOQ) CDR Payees API
+  tags:
+  - CDR
+  - Open Banking
+  - Payees
+  - Banking
+  - Australia
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
+  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/payees
+  properties:
+  - url: https://www.boq.com.au/personal/banking/openbanking/developers
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/#payees
+    type: APIReference
+  - url: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Consumer-authorized Consumer Data Right (CDR) Payees API. Part of the
+    Australian Consumer Data Standards banking surface BOQ implements as an
+    accredited data holder, this family covers Get Payees (GET /banking/payees) and
+    Get Payee Detail (GET /banking/payees/{payeeId}), returning a consumer's saved
+    payees. Access requires a consented, authorized session through the regulated
+    CDR / Accredited Data Recipient (ADR) model using OAuth2 / OIDC (FAPI) and MTLS
+    - it is not openly callable. Endpoints are defined by the shared DSB CDR Banking
+    API standard, not a BOQ-proprietary contract.
 common:
 - type: DomainSecurity
   url: security/bank-of-queensland-domain-security.yml
@@ -77,8 +187,10 @@ common:
   url: llms/bank-of-queensland-llms.txt
 - type: Website
   url: https://www.boq.com.au/
+- type: DeveloperPortal
+  url: https://www.boq.com.au/personal/banking/openbanking/developers
 - type: Documentation
-  url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  url: https://www.boq.com.au/personal/banking/openbanking/developers
 - type: Support
   url: https://www.boq.com.au/help-and-support
 - type: PrivacyPolicy
