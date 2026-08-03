@@ -1,0 +1,26 @@
+{
+  "provider": "bank-of-queensland",
+  "sources": [
+    "bank-of-queensland-banking-account-balances-api-openapi.yml",
+    "bank-of-queensland-banking-account-direct-debits-api-openapi.yml",
+    "bank-of-queensland-banking-account-scheduled-payments-api-openapi.yml",
+    "bank-of-queensland-banking-account-transactions-api-openapi.yml",
+    "bank-of-queensland-banking-accounts-api-openapi.yml",
+    "bank-of-queensland-banking-payees-api-openapi.yml",
+    "bank-of-queensland-banking-products-api-openapi.yml"
+  ],
+  "outputs": [
+    "bank-of-queensland-banking-account-balances-api-openapi.yml",
+    "bank-of-queensland-banking-account-direct-debits-api-openapi.yml",
+    "bank-of-queensland-banking-account-scheduled-payments-api-openapi.yml",
+    "bank-of-queensland-banking-account-transactions-api-openapi.yml",
+    "bank-of-queensland-banking-accounts-api-openapi.yml",
+    "bank-of-queensland-banking-payees-api-openapi.yml",
+    "bank-of-queensland-banking-products-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
