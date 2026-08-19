@@ -36,7 +36,7 @@ tags:
 - ADI
 created: '2026-07-20'
 modified: '2026-07-21T18:00:00Z'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: bank-of-queensland:bank-of-queensland-banking-account-balances-api
   name: Bank of Queensland Banking Account Balances API
