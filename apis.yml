@@ -12,6 +12,18 @@ description: Bank of Queensland Limited (ASX code BOQ) is one of Australia's old
   Data (PRD) API that conforms to the Australian Consumer Data Standards, while
   consumer data sharing runs through the regulated CDR / Accredited Data Recipient
   (ADR) model with OAuth2 / OIDC (FAPI) authorization.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
