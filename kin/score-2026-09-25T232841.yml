@@ -1,21 +1,19 @@
-# Kin Score artifact — bank-of-queensland — 2026-08-25T154045
+# Kin Score artifact — bank-of-queensland — 2026-09-25T232841
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: bank-of-queensland
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T154045
-  composite: 44.4
-  band: developing
+  schema_version: 0.23.0
+  scored_at: '2026-09-25'
+  run_ts: 2026-09-25T232841
+  composite: 38.8
+  band: thin
   facets:
-    discoverability: 81.5
-    contract_quality: 49.7
-    governance: 30.3
+    discoverability: 73.2
+    contract_quality: 44.7
+    contract_governance: 18.2
     operational_transparency: 0.0
-    developer_ergonomics: 37.5
-    commercial_clarity: 28.9
-    contract_governance: 30.3
+    developer_ergonomics: 44.6
     access_clarity: 28.9
   agent_readiness:
     score: 23.9
@@ -44,7 +42,7 @@ kin_score:
     applies: true
     regime: Banking & Open Finance
     regime_id: banking_open_finance
-    score: 77.2
+    score: 48.0
     matched_via: tags
   provenance:
     mcp: derived
