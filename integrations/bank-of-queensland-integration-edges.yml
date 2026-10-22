@@ -11,6 +11,7 @@ checked:
 - https://monid.ai/tools/bank-of-queensland
 - https://n8n.io/integrations/bank-of-queensland/
 - https://zapier.com/apps/bank-of-queensland/integrations
+- https://api.cdr.gov.au/cdr-register/v1/all/data-recipients
 summary: null
 marketplace_apps: []
 edges:
@@ -31,4 +32,35 @@ edges:
     api_families: null
     detected_by: sweep-standard-registers.py
     detected: '2026-10-14'
+- partner_name: Consumer Data Right (ACCC accredited data recipient)
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://api.cdr.gov.au/cdr-register/v1/all/data-recipients
+  category: Australian Consumer Data Right accreditation
+  contract_reference:
+    register: 'CDR Register (Australia, ACCC): accredited data recipients'
+    standard: Consumer Data Right
+    spec_file: null
+    role: accredited-data-recipient
+    registered_name: BANK OF QUEENSLAND LIMITED
+    registered_brands:
+    - Virgin Money
+    register_id: ADRBNK000111
+    accreditation_level: UNRESTRICTED
+    register_status: ACTIVE
+    lapsed: false
+    register_country: AU
+    matched_domain: boq.com.au
+    matched_by: domain
+    signal_note: 'regulated: ACCC accreditation to receive CDR data (a licence, not a product conformance test);
+      software products under the accreditation are the recipient''s own products or its customers / CDR representatives
+      and are never counted'
+    detected_by: sweep-australia-cdr-register.py
+    detected: '2026-10-22'
+  detected_by: sweep-australia-cdr-register.py
+  first_seen: '2026-10-22'
 templates: []
