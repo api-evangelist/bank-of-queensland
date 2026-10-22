@@ -1,6 +1,6 @@
 generated: '2026-07-20'
 method: searched
-source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+source: openapi/bank-of-queensland-banking-products-api-openapi.yml
 docs: https://consumerdatastandardsaustralia.github.io/standards/#error-codes
 # BOQ's CDR Banking API returns errors in the Consumer Data Standards (CDS)
 # ResponseErrorListV2 envelope - NOT RFC 9457 problem+json. Each error carries a

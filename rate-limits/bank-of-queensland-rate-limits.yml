@@ -1,0 +1,44 @@
+name: Bank of Queensland rate limits
+generated: '2026-10-20'
+method: searched
+source: https://consumerdatastandardsaustralia.github.io/standards/
+note: >-
+  BOQ publishes no rate-limit page of its own. These are the traffic thresholds
+  the Consumer Data Standards (Non-functional Requirements > Traffic Thresholds)
+  set for every CDR data holder, BOQ included: calls above them "will be able to
+  be freely throttled or rejected by a data holder". They are regulatory
+  thresholds, not BOQ-published quotas. The harvested CDS contract declares no
+  429 response and no RateLimit/Retry-After headers.
+headers: []
+limit_count: 6
+limits:
+- name: Customer Present per customer
+  limit_text: 10 TPS per customer
+  max: 10
+  window: 1 second
+  scope: per-customer
+- name: Customer Present per Data Recipient Software Product
+  limit_text: 50 TPS per Data Recipient Software Product
+  max: 50
+  window: 1 second
+  scope: per-software-product
+- name: Unattended sessions (low traffic periods)
+  limit_text: 20 sessions per day, per customer, per Data Recipient Software Product
+  max: 20
+  window: 1 day
+  scope: per-customer-per-software-product
+- name: Unattended calls per session
+  limit_text: 100 total calls per session
+  max: 100
+  scope: per-session
+- name: Unattended TPS per session
+  limit_text: 5TPS per session
+  max: 5
+  window: 1 second
+  scope: per-session
+- name: Public (unauthenticated) traffic
+  limit_text: 300 TPS total across all consumers
+  max: 300
+  window: 1 second
+  scope: per-data-holder
+  endpoint: Product Reference Data (GET /banking/products, GET /banking/products/{productId})

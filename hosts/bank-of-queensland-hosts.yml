@@ -1,0 +1,118 @@
+generated: '2026-10-20'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 8
+  own: 5
+  other_domain: 1
+  platform: 2
+  roles:
+  - api
+  - identity
+  - other
+  - website
+hosts:
+- host: api.cds.boq.com.au
+  found_by:
+  - apis[]
+  - probed
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types: []
+  serves:
+  - api
+  - api-gateway
+  - cdn
+  vendor: aws-api-gateway
+  registrable_domain: boq.com.au
+  role: api
+  relation: own
+- host: api.com.au
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: api.com.au
+  role: api
+  relation: other-domain
+- host: application.boq.com.au
+  found_by:
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: boq.com.au
+  role: other
+  relation: own
+- host: consumerdatastandardsaustralia.github.io
+  found_by:
+  - pointer
+  types:
+  - Deprecation
+  serves: []
+  registrable_domain: github.io
+  role: other
+  relation: platform
+- host: find.boq.com.au
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: boq.com.au
+  role: other
+  relation: own
+- host: internetbanking.boq.com.au
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Login
+  serves:
+  - cdn
+  vendor: akamai
+  registrable_domain: boq.com.au
+  role: identity
+  relation: own
+- host: www.boq.com.au
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - GettingStarted
+  - Blog
+  - Website
+  - Documentation
+  - Support
+  - PrivacyPolicy
+  - TermsOfService
+  serves:
+  - docs
+  - cdn
+  vendor: fastly
+  registrable_domain: boq.com.au
+  role: website
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform

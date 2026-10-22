@@ -1,10 +1,10 @@
 ---
-name: Look up Bank of Queensland banking products (CDR PRD)
+name: bank-of-queensland-product-reference
 description: >-
   Discover and inspect BOQ banking products (accounts, term deposits, loans,
   cards) through the public, unauthenticated Consumer Data Right Product
   Reference Data API. No credentials required - only the mandatory x-v header.
-api: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+api: openapi/bank-of-queensland-banking-products-api-openapi.yml
 base_url: https://secure.api.boq.com.au/cds-au/v1
 auth: none
 operations:

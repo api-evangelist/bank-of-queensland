@@ -1,8 +1,13 @@
-generated: '2026-07-20'
+name: Bank of Queensland agent skills
+generated: '2026-10-20'
 method: generated
-source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+source: openapi/
 skills:
   - file: bank-of-queensland-product-reference.md
-    name: Look up Bank of Queensland banking products (CDR PRD)
-    api: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+    name: bank-of-queensland-product-reference
+    api: openapi/bank-of-queensland-banking-products-api-openapi.yml
     operations: [listBankingProducts, getBankingProductDetail]
+  - file: bank-of-queensland-cdr-account-data.md
+    name: bank-of-queensland-cdr-account-data
+    api: openapi/bank-of-queensland-banking-accounts-api-openapi.yml
+    operations: [listBankingAccounts, getBankingAccountDetail, listBankingBalancesBulk, getBankingBalance, listBankingTransactions, getBankingTransactionDetail]

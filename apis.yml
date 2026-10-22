@@ -1,17 +1,17 @@
 aid: bank-of-queensland
+
 url: https://raw.githubusercontent.com/api-evangelist/bank-of-queensland/refs/heads/main/apis.yml
+
 name: Bank of Queensland
+
 kind: company
-description: Bank of Queensland Limited (ASX code BOQ) is one of Australia's oldest
-  banks,
-  founded in Brisbane in 1874, and today an APRA-regulated authorised deposit-taking
-  institution (ADI) and ASX-listed regional retail and commercial bank - a publicly
-  listed company, not a customer-owned mutual. Its banking group includes the ME Bank,
-  Virgin Money Australia and BOQ Specialist brands. As an accredited Consumer Data
-  Right (CDR) data holder, BOQ exposes a public, unauthenticated Product Reference
-  Data (PRD) API that conforms to the Australian Consumer Data Standards, while
-  consumer data sharing runs through the regulated CDR / Accredited Data Recipient
-  (ADR) model with OAuth2 / OIDC (FAPI) authorization.
+
+description: Bank of Queensland Limited (ASX code BOQ) is one of Australia's oldest banks, founded in Brisbane in 1874, and today an APRA-regulated
+  authorised deposit-taking institution (ADI) and ASX-listed regional retail and commercial bank - a publicly listed company, not a customer-owned
+  mutual. Its banking group includes the ME Bank, Virgin Money Australia and BOQ Specialist brands. As an accredited Consumer Data Right (CDR)
+  data holder, BOQ exposes a public, unauthenticated Product Reference Data (PRD) API that conforms to the Australian Consumer Data Standards,
+  while consumer data sharing runs through the regulated CDR / Accredited Data Recipient (ADR) model with OAuth2 / OIDC (FAPI) authorization.
+
 deliveryModel:
   model: saas
   open_source: false
@@ -24,6 +24,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -36,7 +37,9 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bank-of-queensland.png
+
 tags:
 - Finance
 - Banks
@@ -46,6 +49,7 @@ tags:
 - Australia
 - Product Reference Data
 - ADI
+
 tags_raw:
 - Financial
 - Banks
@@ -55,165 +59,40 @@ tags_raw:
 - Australia
 - Product Reference Data
 - ADI
+
 created: '2026-07-20'
-modified: '2026-10-06'
+
+modified: '2026-10-20'
+
 specificationVersion: '0.23'
-apis:
-- aid: bank-of-queensland:bank-of-queensland-banking-account-balances-api
-  name: Bank of Queensland Banking Account Balances API
-  description: Banking Account Balance endpoints
-  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
-  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Account Balances
-  properties:
-  - type: OpenAPI
-    url: openapi/bank-of-queensland-banking-account-balances-api-openapi.yml
-  - type: Documentation
-    url: https://www.boq.com.au/personal/banking/openbanking/developers
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
-- aid: bank-of-queensland:bank-of-queensland-banking-account-direct-debits-api
-  name: Bank of Queensland Banking Account Direct Debits API
-  description: Banking Account Direct Debit endpoints
-  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
-  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Account Direct Debits
-  properties:
-  - type: OpenAPI
-    url: openapi/bank-of-queensland-banking-account-direct-debits-api-openapi.yml
-  - type: Documentation
-    url: https://www.boq.com.au/personal/banking/openbanking/developers
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
-- aid: bank-of-queensland:bank-of-queensland-banking-account-scheduled-payments-api
-  name: Bank of Queensland Banking Account Scheduled Payments API
-  description: Banking Account Scheduled Payment endpoints
-  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
-  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Account Scheduled Payments
-  properties:
-  - type: OpenAPI
-    url: openapi/bank-of-queensland-banking-account-scheduled-payments-api-openapi.yml
-  - type: Documentation
-    url: https://www.boq.com.au/personal/banking/openbanking/developers
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
-- aid: bank-of-queensland:bank-of-queensland-banking-account-transactions-api
-  name: Bank of Queensland Banking Account Transactions API
-  description: Banking Account Transaction endpoints
-  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
-  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Account Transactions
-  properties:
-  - type: OpenAPI
-    url: openapi/bank-of-queensland-banking-account-transactions-api-openapi.yml
-  - type: Documentation
-    url: https://www.boq.com.au/personal/banking/openbanking/developers
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
-- aid: bank-of-queensland:bank-of-queensland-banking-accounts-api
-  name: Bank of Queensland Banking Accounts API
-  description: Banking Account endpoints
-  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
-  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Accounts
-  properties:
-  - type: OpenAPI
-    url: openapi/bank-of-queensland-banking-accounts-api-openapi.yml
-  - type: Documentation
-    url: https://www.boq.com.au/personal/banking/openbanking/developers
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
-- aid: bank-of-queensland:bank-of-queensland-banking-payees-api
-  name: Bank of Queensland Banking Payees API
-  description: Banking Payee endpoints
-  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
-  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Payees
-  properties:
-  - type: OpenAPI
-    url: openapi/bank-of-queensland-banking-payees-api-openapi.yml
-  - type: Documentation
-    url: https://www.boq.com.au/personal/banking/openbanking/developers
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
-- aid: bank-of-queensland:bank-of-queensland-banking-products-api
-  name: Bank of Queensland Banking Products API
-  description: Banking Product endpoints
-  humanURL: https://www.boq.com.au/personal/banking/openbanking/developers
-  baseURL: https://secure.api.boq.com.au/cds-au/v1/banking/products
-  tags:
-  - Banking Products
-  properties:
-  - type: OpenAPI
-    url: openapi/bank-of-queensland-banking-products-api-openapi.yml
-  - type: Documentation
-    url: https://www.boq.com.au/personal/banking/openbanking/developers
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
-  - type: APIReference
-    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
 common:
+- type: RateLimits
+  url: rate-limits/bank-of-queensland-rate-limits.yml
+- type: Spectral
+  url: rules/bank-of-queensland-rules.yml
+- type: JSONLD
+  url: json-ld/bank-of-queensland-context.jsonld
+- type: Vocabulary
+  url: vocabulary/bank-of-queensland-vocabulary.yml
+- type: Deprecation
+  url: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+- type: Overlay
+  url: overlays/bank-of-queensland-banking-account-balances-api-overlay.yaml
+- type: Hosts
+  url: hosts/bank-of-queensland-hosts.yml
+- type: IntegrationEdges
+  url: integrations/bank-of-queensland-integration-edges.yml
+- type: Vendors
+  url: vendors/bank-of-queensland-vendors.yml
+- type: Login
+  url: https://internetbanking.boq.com.au/login
+- type: GettingStarted
+  url: https://www.boq.com.au/personal/help-and-support/business/getting-started-business
 - url: https://www.boq.com.au/blog/
   type: Blog
 - type: CapabilityMap
@@ -241,27 +120,272 @@ common:
   url: data-model/bank-of-queensland-data-model.yml
 - type: X-MCPServerCandidate
   url: mcp/bank-of-queensland-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published
+    API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting
+    the artifact-type surfaces with a server that does not exist.'
 - type: AgentSkill
   url: skills/_index.yml
-- type: Overlay
-  url: overlays/bank-of-queensland-cds-banking-products-overlay.yaml
-- type: LLMsTxt
-  url: llms/bank-of-queensland-llms.txt
 - type: Website
   url: https://www.boq.com.au/
-- type: DeveloperPortal
-  url: https://www.boq.com.au/personal/banking/openbanking/developers
 - type: Documentation
-  url: https://www.boq.com.au/personal/banking/openbanking/developers
+  url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
 - type: Support
-  url: https://www.boq.com.au/help-and-support
+  url: https://www.boq.com.au/personal/help-and-support/
 - type: PrivacyPolicy
   url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
 - type: TermsOfService
-  url: https://www.boq.com.au/important-information/terms-and-conditions
+  url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/terms-and-conditions/
 - type: LinkedIn
   url: https://www.linkedin.com/company/bank-of-queensland
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+
+apis:
+- aid: bank-of-queensland:bank-of-queensland-banking-account-balances-api
+  name: Bank of Queensland Banking Account Balances API
+  description: Banking Account Balance endpoints
+  humanURL: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  x-baseURL-note: BOQ does not publish the authenticated CDR resource base URI publicly (the CDR Register brand detail requires a register token);
+    anonymous GET https://secure.api.boq.com.au/cds-au/v1/banking/accounts returned 400 and https://api.cds.boq.com.au/cds-au/v1/banking/accounts
+    403, so no baseURL is asserted.
+  x-contract-ownership: The contract is the Data Standards Body's Consumer Data Standards (CDR Banking v1.36.0, servers[] a DSB placeholder) which
+    BOQ implements as a registered CDR data holder; the CDR Register (api.cdr.gov.au brands/summary, 2026-10-20) lists brand 'Bank of Queensland
+    Limited' (ABN 32009656740) with publicBaseUri https://api.cds.boq.com.au.
+  tags:
+  - Banking Account Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/bank-of-queensland-banking-account-balances-api-openapi.yml
+  - type: Documentation
+    url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-accounts-balance-list-schema.json
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-accounts-balance-by-id-schema.json
+- aid: bank-of-queensland:bank-of-queensland-banking-account-direct-debits-api
+  name: Bank of Queensland Banking Account Direct Debits API
+  description: Banking Account Direct Debit endpoints
+  humanURL: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  x-baseURL-note: BOQ does not publish the authenticated CDR resource base URI publicly (the CDR Register brand detail requires a register token);
+    anonymous GET https://secure.api.boq.com.au/cds-au/v1/banking/accounts returned 400 and https://api.cds.boq.com.au/cds-au/v1/banking/accounts
+    403, so no baseURL is asserted.
+  x-contract-ownership: The contract is the Data Standards Body's Consumer Data Standards (CDR Banking v1.36.0, servers[] a DSB placeholder) which
+    BOQ implements as a registered CDR data holder; the CDR Register (api.cdr.gov.au brands/summary, 2026-10-20) lists brand 'Bank of Queensland
+    Limited' (ABN 32009656740) with publicBaseUri https://api.cds.boq.com.au.
+  tags:
+  - Banking Account Direct Debits
+  properties:
+  - type: OpenAPI
+    url: openapi/bank-of-queensland-banking-account-direct-debits-api-openapi.yml
+  - type: Documentation
+    url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-direct-debit-authorisation-list-schema.json
+- aid: bank-of-queensland:bank-of-queensland-banking-account-scheduled-payments-api
+  name: Bank of Queensland Banking Account Scheduled Payments API
+  description: Banking Account Scheduled Payment endpoints
+  humanURL: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  x-baseURL-note: BOQ does not publish the authenticated CDR resource base URI publicly (the CDR Register brand detail requires a register token);
+    anonymous GET https://secure.api.boq.com.au/cds-au/v1/banking/accounts returned 400 and https://api.cds.boq.com.au/cds-au/v1/banking/accounts
+    403, so no baseURL is asserted.
+  x-contract-ownership: The contract is the Data Standards Body's Consumer Data Standards (CDR Banking v1.36.0, servers[] a DSB placeholder) which
+    BOQ implements as a registered CDR data holder; the CDR Register (api.cdr.gov.au brands/summary, 2026-10-20) lists brand 'Bank of Queensland
+    Limited' (ABN 32009656740) with publicBaseUri https://api.cds.boq.com.au.
+  tags:
+  - Banking Account Scheduled Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/bank-of-queensland-banking-account-scheduled-payments-api-openapi.yml
+  - type: Documentation
+    url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-scheduled-payments-list-v2-schema.json
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-instalment-plan-list-schema.json
+- aid: bank-of-queensland:bank-of-queensland-banking-account-transactions-api
+  name: Bank of Queensland Banking Account Transactions API
+  description: Banking Account Transaction endpoints
+  humanURL: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  x-baseURL-note: BOQ does not publish the authenticated CDR resource base URI publicly (the CDR Register brand detail requires a register token);
+    anonymous GET https://secure.api.boq.com.au/cds-au/v1/banking/accounts returned 400 and https://api.cds.boq.com.au/cds-au/v1/banking/accounts
+    403, so no baseURL is asserted.
+  x-contract-ownership: The contract is the Data Standards Body's Consumer Data Standards (CDR Banking v1.36.0, servers[] a DSB placeholder) which
+    BOQ implements as a registered CDR data holder; the CDR Register (api.cdr.gov.au brands/summary, 2026-10-20) lists brand 'Bank of Queensland
+    Limited' (ABN 32009656740) with publicBaseUri https://api.cds.boq.com.au.
+  tags:
+  - Banking Account Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/bank-of-queensland-banking-account-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-transaction-list-v2-schema.json
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-transaction-by-id-v3-schema.json
+- aid: bank-of-queensland:bank-of-queensland-banking-accounts-api
+  name: Bank of Queensland Banking Accounts API
+  description: Banking Account endpoints
+  humanURL: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  x-baseURL-note: BOQ does not publish the authenticated CDR resource base URI publicly (the CDR Register brand detail requires a register token);
+    anonymous GET https://secure.api.boq.com.au/cds-au/v1/banking/accounts returned 400 and https://api.cds.boq.com.au/cds-au/v1/banking/accounts
+    403, so no baseURL is asserted.
+  x-contract-ownership: The contract is the Data Standards Body's Consumer Data Standards (CDR Banking v1.36.0, servers[] a DSB placeholder) which
+    BOQ implements as a registered CDR data holder; the CDR Register (api.cdr.gov.au brands/summary, 2026-10-20) lists brand 'Bank of Queensland
+    Limited' (ABN 32009656740) with publicBaseUri https://api.cds.boq.com.au.
+  tags:
+  - Banking Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/bank-of-queensland-banking-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-account-list-v3-schema.json
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-account-by-id-v5-schema.json
+- aid: bank-of-queensland:bank-of-queensland-banking-payees-api
+  name: Bank of Queensland Banking Payees API
+  description: Banking Payee endpoints
+  humanURL: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  x-baseURL-note: BOQ does not publish the authenticated CDR resource base URI publicly (the CDR Register brand detail requires a register token);
+    anonymous GET https://secure.api.boq.com.au/cds-au/v1/banking/accounts returned 400 and https://api.cds.boq.com.au/cds-au/v1/banking/accounts
+    403, so no baseURL is asserted.
+  x-contract-ownership: The contract is the Data Standards Body's Consumer Data Standards (CDR Banking v1.36.0, servers[] a DSB placeholder) which
+    BOQ implements as a registered CDR data holder; the CDR Register (api.cdr.gov.au brands/summary, 2026-10-20) lists brand 'Bank of Queensland
+    Limited' (ABN 32009656740) with publicBaseUri https://api.cds.boq.com.au.
+  tags:
+  - Banking Payees
+  properties:
+  - type: OpenAPI
+    url: openapi/bank-of-queensland-banking-payees-api-openapi.yml
+  - type: Documentation
+    url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-payee-list-v2-schema.json
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-payee-by-id-v2-schema.json
+- aid: bank-of-queensland:bank-of-queensland-banking-products-api
+  name: Bank of Queensland Banking Products API
+  description: Banking Product endpoints
+  humanURL: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  baseURL: https://api.cds.boq.com.au/cds-au/v1
+  x-contract-ownership: The contract is the Data Standards Body's Consumer Data Standards (CDR Banking v1.36.0, servers[] a DSB placeholder) which
+    BOQ implements as a registered CDR data holder; the CDR Register (api.cdr.gov.au brands/summary, 2026-10-20) lists brand 'Bank of Queensland
+    Limited' (ABN 32009656740) with publicBaseUri https://api.cds.boq.com.au.
+  tags:
+  - Banking Products
+  properties:
+  - type: OpenAPI
+    url: openapi/bank-of-queensland-banking-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#accounts
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#transactions
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#direct-debits
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/#payees
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-product-list-v4-schema.json
+  - type: JSONSchema
+    url: json-schema/bank-of-queensland-response-banking-product-by-id-v7-schema.json
+
+x-coverage:
+  state: covered
+  reason: identity-verified
+  detail: 'Identity pass 2026-10-20: www.boq.com.au is the company site (title "BOQ"). The former /personal/banking/openbanking/developers URL
+    now redirects to a consumer Open Banking (CDR) help page with no developer content, so the DeveloperPortal pointer was removed and Documentation/humanURL
+    point at the canonical page. The public CDR Product Reference Data endpoint answered 200 with product JSON.'
+  evidence:
+  - url: https://www.boq.com.au/
+    status: 200
+  - url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+    status: 200
+  - url: https://www.boq.com.au/personal/help-and-support/
+    status: 200
+  - url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/terms-and-conditions/
+    status: 200
+  - url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
+    status: 200
+  - url: https://www.boq.com.au/blog/
+    status: 200
+  - url: https://www.linkedin.com/company/bank-of-queensland
+    status: 200
+  - url: https://secure.api.boq.com.au/cds-au/v1/banking/products?page-size=1
+    status: 200
+  - url: https://www.boq.com.au/personal/help-and-support/business/getting-started-business
+    status: 200
+  - url: https://internetbanking.boq.com.au/login
+    status: 200
+    note: 403 to a bare curl, 200 to a browser user-agent in pre-flight (edge policy, not dead)
+  - url: https://consumerdatastandardsaustralia.github.io/standards/
+    status: 200
+x-enrichment:
+  date: '2026-10-20'
+  status: enriched
+  artifacts_added: 31
+  pass: modular-v1
+  engine: identity=anthropic,contract=anthropic,surfaces=anthropic,docs=anthropic,regulatory=anthropic

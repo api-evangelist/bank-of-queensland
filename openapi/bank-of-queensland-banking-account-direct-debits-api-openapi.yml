@@ -433,19 +433,41 @@ paths:
       x-version: '1'
 components:
   schemas:
-    ResponseBankingDirectDebitAuthorisationList:
+    MetaPaginated:
       properties:
-        data:
-          $ref: '#/components/schemas/ResponseBankingDirectDebitAuthorisationList_data'
-        links:
-          $ref: '#/components/schemas/LinksPaginated'
-        meta:
-          $ref: '#/components/schemas/MetaPaginated'
+        totalRecords:
+          description: The total number of records in the full set. See [pagination](#pagination).
+          type: integer
+          x-cds-type: NaturalNumber
+        totalPages:
+          description: The total number of pages in the full set. See [pagination](#pagination).
+          type: integer
+          x-cds-type: NaturalNumber
       required:
-      - data
-      - links
-      - meta
+      - totalPages
+      - totalRecords
       type: object
+    BankingProductCategoryV2:
+      description: The category to which a product or account belongs. See [here](#product-categories) for more details.
+      enum:
+      - BUSINESS_LOANS
+      - BUY_NOW_PAY_LATER
+      - CRED_AND_CHRG_CARDS
+      - LEASES
+      - MARGIN_LOANS
+      - OVERDRAFTS
+      - PERS_LOANS
+      - REGULATED_TRUST_ACCOUNTS
+      - RESIDENTIAL_MORTGAGES
+      - TERM_DEPOSITS
+      - TRADE_FINANCE
+      - TRANS_AND_SAVINGS_ACCOUNTS
+      - TRAVEL_CARDS
+      type: string
+    BankingAccountId:
+      description: A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.
+      type: string
+      x-cds-type: ASCIIString
     BankingAuthorisedEntity:
       properties:
         description:
@@ -466,15 +488,6 @@ components:
       type: object
       x-conditional:
       - financialInstitution
-    ErrorV2_meta:
-      description: Additional data for customised error codes.
-      properties:
-        urn:
-          description: The CDR error code URN which the application-specific error code extends. Mandatory if the error _code_ is an application-specific error rather than a standardised error code.
-          type: string
-      type: object
-      x-conditional:
-      - urn
     RequestAccountIdListV1:
       properties:
         data:
@@ -483,52 +496,6 @@ components:
           $ref: '#/components/schemas/Meta'
       required:
       - data
-      type: object
-    Meta:
-      type: object
-    ResponseErrorListV2:
-      properties:
-        errors:
-          description: List of errors.
-          items:
-            $ref: '#/components/schemas/ErrorV2'
-          type: array
-      required:
-      - errors
-      type: object
-    MetaPaginated:
-      properties:
-        totalRecords:
-          description: The total number of records in the full set. See [pagination](#pagination).
-          type: integer
-          x-cds-type: NaturalNumber
-        totalPages:
-          description: The total number of pages in the full set. See [pagination](#pagination).
-          type: integer
-          x-cds-type: NaturalNumber
-      required:
-      - totalPages
-      - totalRecords
-      type: object
-    BankingDirectDebit:
-      properties:
-        accountId:
-          allOf:
-          - $ref: '#/components/schemas/BankingAccountId'
-          description: Unique identifier for the account.
-        authorisedEntity:
-          $ref: '#/components/schemas/BankingAuthorisedEntity'
-        lastDebitDateTime:
-          description: The date and time of the last debit executed under this authorisation.
-          type: string
-          x-cds-type: DateTimeString
-        lastDebitAmount:
-          description: The amount of the last debit executed under this authorisation.
-          type: string
-          x-cds-type: AmountString
-      required:
-      - accountId
-      - authorisedEntity
       type: object
     LinksPaginated:
       properties:
@@ -560,30 +527,16 @@ components:
       - next
       - first
       - last
-    ResponseBankingDirectDebitAuthorisationList_data:
+    ResponseErrorListV2:
       properties:
-        directDebitAuthorisations:
-          description: The list of authorisations returned.
+        errors:
+          description: List of errors.
           items:
-            $ref: '#/components/schemas/BankingDirectDebit'
+            $ref: '#/components/schemas/ErrorV2'
           type: array
       required:
-      - directDebitAuthorisations
+      - errors
       type: object
-    RequestAccountIdListV1_data:
-      properties:
-        accountIds:
-          description: Array of _accountId_ values to obtain data for.
-          items:
-            $ref: '#/components/schemas/BankingAccountId'
-          type: array
-      required:
-      - accountIds
-      type: object
-    BankingAccountId:
-      description: A unique identifier for a Banking account, generated according to [CDR ID Permanence](#id-permanence) requirements.
-      type: string
-      x-cds-type: ASCIIString
     ErrorV2:
       properties:
         code:
@@ -604,23 +557,70 @@ components:
       type: object
       x-conditional:
       - meta
-    BankingProductCategoryV2:
-      description: The category to which a product or account belongs. See [here](#product-categories) for more details.
-      enum:
-      - BUSINESS_LOANS
-      - BUY_NOW_PAY_LATER
-      - CRED_AND_CHRG_CARDS
-      - LEASES
-      - MARGIN_LOANS
-      - OVERDRAFTS
-      - PERS_LOANS
-      - REGULATED_TRUST_ACCOUNTS
-      - RESIDENTIAL_MORTGAGES
-      - TERM_DEPOSITS
-      - TRADE_FINANCE
-      - TRANS_AND_SAVINGS_ACCOUNTS
-      - TRAVEL_CARDS
-      type: string
+    BankingDirectDebit:
+      properties:
+        accountId:
+          allOf:
+          - $ref: '#/components/schemas/BankingAccountId'
+          description: Unique identifier for the account.
+        authorisedEntity:
+          $ref: '#/components/schemas/BankingAuthorisedEntity'
+        lastDebitDateTime:
+          description: The date and time of the last debit executed under this authorisation.
+          type: string
+          x-cds-type: DateTimeString
+        lastDebitAmount:
+          description: The amount of the last debit executed under this authorisation.
+          type: string
+          x-cds-type: AmountString
+      required:
+      - accountId
+      - authorisedEntity
+      type: object
+    Meta:
+      type: object
+    ResponseBankingDirectDebitAuthorisationList_data:
+      properties:
+        directDebitAuthorisations:
+          description: The list of authorisations returned.
+          items:
+            $ref: '#/components/schemas/BankingDirectDebit'
+          type: array
+      required:
+      - directDebitAuthorisations
+      type: object
+    RequestAccountIdListV1_data:
+      properties:
+        accountIds:
+          description: Array of _accountId_ values to obtain data for.
+          items:
+            $ref: '#/components/schemas/BankingAccountId'
+          type: array
+      required:
+      - accountIds
+      type: object
+    ErrorV2_meta:
+      description: Additional data for customised error codes.
+      properties:
+        urn:
+          description: The CDR error code URN which the application-specific error code extends. Mandatory if the error _code_ is an application-specific error rather than a standardised error code.
+          type: string
+      type: object
+      x-conditional:
+      - urn
+    ResponseBankingDirectDebitAuthorisationList:
+      properties:
+        data:
+          $ref: '#/components/schemas/ResponseBankingDirectDebitAuthorisationList_data'
+        links:
+          $ref: '#/components/schemas/LinksPaginated'
+        meta:
+          $ref: '#/components/schemas/MetaPaginated'
+      required:
+      - data
+      - links
+      - meta
+      type: object
   requestBodies:
     RequestAccountIds:
       content:
@@ -630,15 +630,15 @@ components:
       description: Request payload containing a list of _accountId_ values to obtain data for.
       required: true
   headers:
-    XV:
-      description: The [payload version](#response-headers) that the endpoint has responded with.
+    XFAPIInteractionId:
+      description: An **[[RFC4122]](#nref-RFC4122)** UUID used as a correlation id. If provided, the data holder **MUST** play back this value in the _x-fapi-interaction-id_ response header. If not provided a **[[RFC4122]](#nref-RFC4122)** UUID value is required to be provided in the response header to track the interaction.
       explode: false
       required: true
       schema:
         type: string
       style: simple
-    XFAPIInteractionId:
-      description: An **[[RFC4122]](#nref-RFC4122)** UUID used as a correlation id. If provided, the data holder **MUST** play back this value in the _x-fapi-interaction-id_ response header. If not provided a **[[RFC4122]](#nref-RFC4122)** UUID value is required to be provided in the response header to track the interaction.
+    XV:
+      description: The [payload version](#response-headers) that the endpoint has responded with.
       explode: false
       required: true
       schema:

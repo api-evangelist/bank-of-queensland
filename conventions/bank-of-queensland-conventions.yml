@@ -1,6 +1,6 @@
 generated: '2026-07-20'
 method: searched
-source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+source: openapi/bank-of-queensland-banking-products-api-openapi.yml
 docs: https://consumerdatastandardsaustralia.github.io/standards/#introduction
 # Cross-cutting request/response semantics for BOQ's CDR Banking API. These are
 # the mandated Australian Consumer Data Standards (CDS) conventions, DERIVED from
@@ -35,6 +35,7 @@ pagination:
     links.next: URI of the next page (absent on last page).
     links.last: URI of the last page.
 idempotency:
+  coverage: na
   supported: false
   note: >-
     The public PRD surface is read-only (GET only), so no idempotency-key
@@ -57,3 +58,11 @@ rate_limiting:
 transport:
   public_prd_base: https://secure.api.boq.com.au/cds-au/v1
   tls: TLS 1.2+ (non-mutual for public PRD; MTLS for consumer-data endpoints).
+reversibility:
+  status: na
+  note: >-
+    Read-only surface. Every operation in the CDS Banking contracts is a GET, and the
+    three POSTs (listBankingBalancesSpecificAccounts, listDirectDebitsSpecificAccounts,
+    listScheduledPaymentsSpecificAccounts) are bulk reads taking accountIds in the body;
+    nothing is created, changed or moved, so no reversal operation or window applies.
+dry_run_mode: na

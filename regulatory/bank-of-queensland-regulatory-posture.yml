@@ -1,0 +1,57 @@
+generated: '2026-10-20'
+method: searched
+source: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
+signals:
+  data_subject_request:
+    url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
+    section: Accessing and correcting personal information
+    channel: privacy@boq.com.au; 1300 55 72 72; GPO Box 898 Brisbane QLD 4001
+    rights_named:
+    - access
+    - correction
+    escalation: Australian Financial Complaints Authority (AFCA); Office of the Australian Information Commissioner
+      (OAIC)
+    evidence:
+    - source: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: 'You may request access to the personal information (including credit information and credit eligibility
+        information) we hold about you at any time by:'
+    - source: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: Under the Privacy Act, you also have a right to request that we correct information (including credit
+        information and credit eligibility information) that you believe to be inaccurate, out of date, incomplete,
+        irrelevant or misleading.
+    - source: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: Where we do grant access to your information, we may charge you a fee for accessing your personal information.
+    note: BOQ states a right to request access to and correction of personal information (including credit information)
+      under the Privacy Act, via its Privacy Officer, and that a fee may be charged for access. No deletion or portability
+      right and no response SLA is stated on this page.
+  data_residency:
+    url: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
+    section: Exchange of information with overseas parties
+    residency: not guaranteed in Australia; overseas disclosure to named countries
+    evidence:
+    - source: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: Some of the parties with which we exchange your personal information (including credit information
+        and credit eligibility information), such as our service providers and other third parties listed above,
+        may be located outside Australia.
+    - source: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/
+      http_status: 200
+      fetched: '2026-10-20'
+      quote: These countries include India, Germany, Singapore, Canada, Philippines, Japan, New Zealand, Ireland,
+        Poland, France, Netherlands, Romania, Belgium, Bulgaria, China, Malaysia, Spain, Sweden, Switzerland, United
+        States, Albania, Costa Rica, Israel, Italy, Mexico, South Korea, United Kingdom and Vietnam and may not
+        be subject to Australia’s Privacy Act.
+    note: 'BOQ does not commit to keeping personal information in Australia: service providers and third parties
+      may store or access it overseas, and the policy names 28 countries (Appendix A) whose recipients may not be
+      subject to the Australian Privacy Act.'
+notes: 'Read from the BOQ Privacy Policy (Effective Date: November 2025) and Terms and Conditions page (both HTTP
+  200, 2026-10-20). The dossier flagged no signal candidates; the two signals above were found by reading the privacy
+  page. Nothing on these pages speaks to subprocessor lists by name, AI transparency, incident notification, GPC,
+  retention periods, or the other catalog signals.'

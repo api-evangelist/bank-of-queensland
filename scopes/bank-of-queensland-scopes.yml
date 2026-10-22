@@ -1,6 +1,6 @@
 generated: '2026-07-21'
 method: searched
-source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
+source: openapi/bank-of-queensland-banking-products-api-openapi.yml
 docs: https://consumerdatastandardsaustralia.github.io/standards/#authorisation-scopes
 # The harvested DSB CDS Banking contract declares no oauth2 securitySchemes, so the
 # derive pass returned empty. These authorisation scopes are the mandated Australian

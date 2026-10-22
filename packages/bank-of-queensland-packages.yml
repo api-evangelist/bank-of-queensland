@@ -1,0 +1,10 @@
+generated: '2026-10-20'
+method: none
+source: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+note: >-
+  No first-party BOQ client library found. npm "boq" and PyPI "boq" exist but are
+  unrelated (PyPI boq: "Safe YOLO with AI code tools..."; npm boq has no
+  description/author tying it to the bank); npm/PyPI "bank-of-queensland" and
+  "boq-sdk" return 404. BOQ's API surface is the DSB Consumer Data Standards
+  contract; no SDK/CLI links appear on its open-banking page.
+packages: []

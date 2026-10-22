@@ -283,24 +283,55 @@ paths:
       x-version: '2'
 components:
   schemas:
-    BankingBillerPayee:
+    BankingDomesticPayeeCard:
       properties:
-        billerCode:
-          description: BPAY Biller Code of the Biller.
+        cardNumber:
+          description: Name of the account to pay to.
           type: string
-        crn:
-          description: BPAY CRN of the Biller (if available).<br/>Where the CRN contains sensitive information, it should be masked in line with how the Data Holder currently displays account identifiers in their existing online banking channels. If the contents of the CRN match the format of a Credit Card PAN they should be masked according to the rules applicable for [MaskedPANString](#common-field-types). If the contents are otherwise sensitive, then it should be masked using the rules applicable for the [MaskedAccountString](#common-field-types) common type.
+          x-cds-type: MaskedPANString
+      required:
+      - cardNumber
+      type: object
+    BankingPayeeId:
+      description: A unique identifier for a Banking payee, generated according to [CDR ID Permanence](#id-permanence) requirements.
+      type: string
+      x-cds-type: ASCIIString
+    BankingInternationalPayee_beneficiaryDetails:
+      properties:
+        name:
+          description: Name of the beneficiary.
           type: string
-        billerName:
-          description: Name of the Biller.
+        country:
+          description: Country where the beneficiary resides. A valid [ISO 3166 Alpha-3](https://www.iso.org/iso-3166-country-codes.html) country code.
+          type: string
+          x-cds-type: ExternalRef
+        message:
+          description: Response message for the payment.
           type: string
       required:
-      - billerCode
-      - billerName
+      - country
       type: object
-      x-conditional:
-      - crn
-    Meta:
+    ResponseBankingPayeeListV2_data:
+      properties:
+        payees:
+          description: The list of payees returned.
+          items:
+            $ref: '#/components/schemas/BankingPayeeV2'
+          type: array
+      required:
+      - payees
+      type: object
+    BankingInternationalPayee_bankDetails_bankAddress:
+      properties:
+        name:
+          description: Name of the recipient Bank.
+          type: string
+        address:
+          description: Address of the recipient Bank.
+          type: string
+      required:
+      - address
+      - name
       type: object
     LinksPaginated:
       properties:
@@ -332,6 +363,49 @@ components:
       - next
       - first
       - last
+    ErrorV2:
+      properties:
+        code:
+          description: The code of the error encountered. Where the error is specific to the respondent, an application-specific error code, expressed as a string value. If the error is application-specific, the URN code that the specific error extends must be provided in the _meta_ object. Otherwise, the value is the error code URN.
+          type: string
+        title:
+          description: A short, human-readable summary of the problem that **MUST NOT** change from occurrence to occurrence of the problem represented by the error code.
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          type: string
+        meta:
+          $ref: '#/components/schemas/ErrorV2_meta'
+      required:
+      - code
+      - detail
+      - title
+      type: object
+      x-conditional:
+      - meta
+    ErrorV2_meta:
+      description: Additional data for customised error codes.
+      properties:
+        urn:
+          description: The CDR error code URN which the application-specific error code extends. Mandatory if the error _code_ is an application-specific error rather than a standardised error code.
+          type: string
+      type: object
+      x-conditional:
+      - urn
+    MetaPaginated:
+      properties:
+        totalRecords:
+          description: The total number of records in the full set. See [pagination](#pagination).
+          type: integer
+          x-cds-type: NaturalNumber
+        totalPages:
+          description: The total number of pages in the full set. See [pagination](#pagination).
+          type: integer
+          x-cds-type: NaturalNumber
+      required:
+      - totalPages
+      - totalRecords
+      type: object
     BankingPayeeV2:
       properties:
         payeeId:
@@ -361,61 +435,6 @@ components:
       - payeeId
       - type
       type: object
-    BankingDomesticPayeeCard:
-      properties:
-        cardNumber:
-          description: Name of the account to pay to.
-          type: string
-          x-cds-type: MaskedPANString
-      required:
-      - cardNumber
-      type: object
-    ErrorV2:
-      properties:
-        code:
-          description: The code of the error encountered. Where the error is specific to the respondent, an application-specific error code, expressed as a string value. If the error is application-specific, the URN code that the specific error extends must be provided in the _meta_ object. Otherwise, the value is the error code URN.
-          type: string
-        title:
-          description: A short, human-readable summary of the problem that **MUST NOT** change from occurrence to occurrence of the problem represented by the error code.
-          type: string
-        detail:
-          description: A human-readable explanation specific to this occurrence of the problem.
-          type: string
-        meta:
-          $ref: '#/components/schemas/ErrorV2_meta'
-      required:
-      - code
-      - detail
-      - title
-      type: object
-      x-conditional:
-      - meta
-    BankingPayeeDetailV2_allOf:
-      properties:
-        payeeUType:
-          description: Type of object included that describes the payee in detail.
-          enum:
-          - biller
-          - digitalWallet
-          - domestic
-          - international
-          type: string
-        biller:
-          $ref: '#/components/schemas/BankingBillerPayee'
-        domestic:
-          $ref: '#/components/schemas/BankingDomesticPayee'
-        digitalWallet:
-          $ref: '#/components/schemas/BankingDigitalWalletPayee'
-        international:
-          $ref: '#/components/schemas/BankingInternationalPayee'
-      required:
-      - payeeUType
-      type: object
-      x-conditional:
-      - biller
-      - digitalWallet
-      - domestic
-      - international
     BankingDigitalWalletPayee:
       properties:
         name:
@@ -443,72 +462,43 @@ components:
       - provider
       - type
       type: object
-    MetaPaginated:
+    ResponseBankingPayeeByIdV2:
       properties:
-        totalRecords:
-          description: The total number of records in the full set. See [pagination](#pagination).
-          type: integer
-          x-cds-type: NaturalNumber
-        totalPages:
-          description: The total number of pages in the full set. See [pagination](#pagination).
-          type: integer
-          x-cds-type: NaturalNumber
+        data:
+          $ref: '#/components/schemas/BankingPayeeDetailV2'
+        links:
+          $ref: '#/components/schemas/Links'
+        meta:
+          $ref: '#/components/schemas/Meta'
       required:
-      - totalPages
-      - totalRecords
+      - data
+      - links
       type: object
-    BankingInternationalPayee_beneficiaryDetails:
+    BankingDomesticPayeePayId:
       properties:
         name:
-          description: Name of the beneficiary.
+          description: The name assigned to the PayID by the owner of the PayID.
           type: string
-        country:
-          description: Country where the beneficiary resides. A valid [ISO 3166 Alpha-3](https://www.iso.org/iso-3166-country-codes.html) country code.
+        identifier:
+          description: The identifier of the PayID (dependent on type).
           type: string
-          x-cds-type: ExternalRef
-        message:
-          description: Response message for the payment.
+        type:
+          description: The type of the PayID.
+          enum:
+          - ABN
+          - EMAIL
+          - ORG_IDENTIFIER
+          - TELEPHONE
           type: string
       required:
-      - country
+      - identifier
+      - type
       type: object
     BankingPayeeDetailV2:
       allOf:
       - $ref: '#/components/schemas/BankingPayeeV2'
       - $ref: '#/components/schemas/BankingPayeeDetailV2_allOf'
-    BankingDomesticPayeeAccount:
-      properties:
-        accountName:
-          description: Name of the account to pay to.
-          type: string
-        bsb:
-          description: BSB of the account to pay to.
-          type: string
-        accountNumber:
-          description: Number of the account to pay to.
-          type: string
-      required:
-      - accountNumber
-      - bsb
-      type: object
-    ErrorV2_meta:
-      description: Additional data for customised error codes.
-      properties:
-        urn:
-          description: The CDR error code URN which the application-specific error code extends. Mandatory if the error _code_ is an application-specific error rather than a standardised error code.
-          type: string
-      type: object
-      x-conditional:
-      - urn
-    ResponseErrorListV2:
-      properties:
-        errors:
-          description: List of errors.
-          items:
-            $ref: '#/components/schemas/ErrorV2'
-          type: array
-      required:
-      - errors
+    Meta:
       type: object
     BankingDomesticPayee:
       properties:
@@ -532,6 +522,74 @@ components:
       - account
       - card
       - payId
+    BankingDomesticPayeeAccount:
+      properties:
+        accountName:
+          description: Name of the account to pay to.
+          type: string
+        bsb:
+          description: BSB of the account to pay to.
+          type: string
+        accountNumber:
+          description: Number of the account to pay to.
+          type: string
+      required:
+      - accountNumber
+      - bsb
+      type: object
+    BankingBillerPayee:
+      properties:
+        billerCode:
+          description: BPAY Biller Code of the Biller.
+          type: string
+        crn:
+          description: BPAY CRN of the Biller (if available).<br/>Where the CRN contains sensitive information, it should be masked in line with how the Data Holder currently displays account identifiers in their existing online banking channels. If the contents of the CRN match the format of a Credit Card PAN they should be masked according to the rules applicable for [MaskedPANString](#common-field-types). If the contents are otherwise sensitive, then it should be masked using the rules applicable for the [MaskedAccountString](#common-field-types) common type.
+          type: string
+        billerName:
+          description: Name of the Biller.
+          type: string
+      required:
+      - billerCode
+      - billerName
+      type: object
+      x-conditional:
+      - crn
+    ResponseErrorListV2:
+      properties:
+        errors:
+          description: List of errors.
+          items:
+            $ref: '#/components/schemas/ErrorV2'
+          type: array
+      required:
+      - errors
+      type: object
+    BankingPayeeDetailV2_allOf:
+      properties:
+        payeeUType:
+          description: Type of object included that describes the payee in detail.
+          enum:
+          - biller
+          - digitalWallet
+          - domestic
+          - international
+          type: string
+        biller:
+          $ref: '#/components/schemas/BankingBillerPayee'
+        domestic:
+          $ref: '#/components/schemas/BankingDomesticPayee'
+        digitalWallet:
+          $ref: '#/components/schemas/BankingDigitalWalletPayee'
+        international:
+          $ref: '#/components/schemas/BankingInternationalPayee'
+      required:
+      - payeeUType
+      type: object
+      x-conditional:
+      - biller
+      - digitalWallet
+      - domestic
+      - international
     Links:
       properties:
         self:
@@ -541,10 +599,6 @@ components:
       required:
       - self
       type: object
-    BankingPayeeId:
-      description: A unique identifier for a Banking payee, generated according to [CDR ID Permanence](#id-permanence) requirements.
-      type: string
-      x-cds-type: ASCIIString
     BankingInternationalPayee_bankDetails:
       properties:
         country:
@@ -580,70 +634,6 @@ components:
       - accountNumber
       - country
       type: object
-    ResponseBankingPayeeByIdV2:
-      properties:
-        data:
-          $ref: '#/components/schemas/BankingPayeeDetailV2'
-        links:
-          $ref: '#/components/schemas/Links'
-        meta:
-          $ref: '#/components/schemas/Meta'
-      required:
-      - data
-      - links
-      type: object
-    BankingInternationalPayee_bankDetails_bankAddress:
-      properties:
-        name:
-          description: Name of the recipient Bank.
-          type: string
-        address:
-          description: Address of the recipient Bank.
-          type: string
-      required:
-      - address
-      - name
-      type: object
-    ResponseBankingPayeeListV2_data:
-      properties:
-        payees:
-          description: The list of payees returned.
-          items:
-            $ref: '#/components/schemas/BankingPayeeV2'
-          type: array
-      required:
-      - payees
-      type: object
-    BankingDomesticPayeePayId:
-      properties:
-        name:
-          description: The name assigned to the PayID by the owner of the PayID.
-          type: string
-        identifier:
-          description: The identifier of the PayID (dependent on type).
-          type: string
-        type:
-          description: The type of the PayID.
-          enum:
-          - ABN
-          - EMAIL
-          - ORG_IDENTIFIER
-          - TELEPHONE
-          type: string
-      required:
-      - identifier
-      - type
-      type: object
-    BankingInternationalPayee:
-      properties:
-        beneficiaryDetails:
-          $ref: '#/components/schemas/BankingInternationalPayee_beneficiaryDetails'
-        bankDetails:
-          $ref: '#/components/schemas/BankingInternationalPayee_bankDetails'
-      required:
-      - bankDetails
-      - beneficiaryDetails
-      type: object
     ResponseBankingPayeeListV2:
       properties:
         data:
@@ -657,16 +647,26 @@ components:
       - links
       - meta
       type: object
+    BankingInternationalPayee:
+      properties:
+        beneficiaryDetails:
+          $ref: '#/components/schemas/BankingInternationalPayee_beneficiaryDetails'
+        bankDetails:
+          $ref: '#/components/schemas/BankingInternationalPayee_bankDetails'
+      required:
+      - bankDetails
+      - beneficiaryDetails
+      type: object
   headers:
-    XV:
-      description: The [payload version](#response-headers) that the endpoint has responded with.
+    XFAPIInteractionId:
+      description: An **[[RFC4122]](#nref-RFC4122)** UUID used as a correlation id. If provided, the data holder **MUST** play back this value in the _x-fapi-interaction-id_ response header. If not provided a **[[RFC4122]](#nref-RFC4122)** UUID value is required to be provided in the response header to track the interaction.
       explode: false
       required: true
       schema:
         type: string
       style: simple
-    XFAPIInteractionId:
-      description: An **[[RFC4122]](#nref-RFC4122)** UUID used as a correlation id. If provided, the data holder **MUST** play back this value in the _x-fapi-interaction-id_ response header. If not provided a **[[RFC4122]](#nref-RFC4122)** UUID value is required to be provided in the response header to track the interaction.
+    XV:
+      description: The [payload version](#response-headers) that the endpoint has responded with.
       explode: false
       required: true
       schema:

@@ -1,0 +1,16 @@
+name: Bank of Queensland pricing
+generated: '2026-10-20'
+method: none
+source: https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking
+audience: unclear
+pricing_basis: none
+published: false
+delivery:
+  model: managed
+plan_count: 0
+plans: []
+note: >-
+  BOQ publishes no API pricing or plans. Its only API surface is the regulated
+  Consumer Data Right data-holder interface (public Product Reference Data plus
+  consumer-consented data via accredited data recipients); BOQ's rate/fee pages
+  are retail banking fee schedules, not API pricing.

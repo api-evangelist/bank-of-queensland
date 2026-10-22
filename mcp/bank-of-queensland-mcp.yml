@@ -1,29 +1,126 @@
-generated: '2026-07-20'
+name: Bank of Queensland MCP server (candidate)
+generated: '2026-10-20'
 method: derived
 status: candidate
-source: openapi/bank-of-queensland-cds-banking-products-openapi.yml
-server:
-  name: bank-of-queensland-prd
-  transport: http
-  url: null
-  base: https://secure.api.boq.com.au/cds-au/v1
-  auth: none
-tools:
-- name: list_banking_products
-  description: List BOQ banking products openly offered to the market (accounts, term deposits, loans,
-    cards). Supports effective, updated-since, brand, product-category filters and page/page-size pagination.
-  source_operation: openapi/bank-of-queensland-cds-banking-products-openapi.yml#listBankingProducts
-  http: GET /banking/products
-- name: get_banking_product_detail
-  description: Obtain detailed information on a single BOQ product by productId.
-  source_operation: openapi/bank-of-queensland-cds-banking-products-openapi.yml#getBankingProductDetail
-  http: GET /banking/products/{productId}
-notes: The authenticated CDR consumer-data operations (accounts, balances, transactions, payees, payments)
-  are intentionally excluded - they require ACCC accreditation as a CDR Accredited Data Recipient and
-  cannot be exposed as open MCP tools.
+source: openapi/ (7 DSB CDS Banking API v1.36.0 contracts); search 2026-10-20 found no BOQ-published MCP
+  server
 deployment:
   mode: none
+  auth: unknown
   verified: derived
-  tools: 2
-  checked: '2026-08-12'
-  source: catalog MCP census
+search_evidence:
+- query: '"Bank of Queensland" OR BOQ MCP server "Model Context Protocol"'
+  result: no BOQ MCP server; openbankingtracker.com lists no confirmed MCP program
+- url: https://www.boq.com.au/.well-known/mcp.json
+  status: 404
+- url: https://www.boq.com.au/llms.txt
+  status: 404
+live_bases:
+- url: https://secure.api.boq.com.au/cds-au/v1/banking/products
+  status: 200
+  header: 'x-v: 3'
+  checked: '2026-10-20'
+- url: https://api.cds.boq.com.au/cds-au/v1/banking/products
+  status: 200
+  header: 'x-v: 5'
+  note: 406 Unsupported Version for x-v 1-4 and 6
+  checked: '2026-10-20'
+tools:
+- name: list_banking_balances_bulk
+  description: Get Bulk Balances
+  source_operation: openapi/bank-of-queensland-banking-account-balances-api-openapi.yml#listBankingBalancesBulk
+  http: GET /banking/accounts/balances
+  access: cdr-accredited-data-recipient-only
+- name: list_banking_balances_specific_accounts
+  description: Get Balances For Specific Accounts
+  source_operation: openapi/bank-of-queensland-banking-account-balances-api-openapi.yml#listBankingBalancesSpecificAccounts
+  http: POST /banking/accounts/balances
+  access: cdr-accredited-data-recipient-only
+- name: get_banking_balance
+  description: Get Account Balance
+  source_operation: openapi/bank-of-queensland-banking-account-balances-api-openapi.yml#getBankingBalance
+  http: GET /banking/accounts/{accountId}/balance
+  access: cdr-accredited-data-recipient-only
+- name: list_direct_debits
+  description: Get Direct Debits For Account
+  source_operation: openapi/bank-of-queensland-banking-account-direct-debits-api-openapi.yml#listDirectDebits
+  http: GET /banking/accounts/{accountId}/direct-debits
+  access: cdr-accredited-data-recipient-only
+- name: list_direct_debits_bulk
+  description: Get Bulk Direct Debits
+  source_operation: openapi/bank-of-queensland-banking-account-direct-debits-api-openapi.yml#listDirectDebitsBulk
+  http: GET /banking/accounts/direct-debits
+  access: cdr-accredited-data-recipient-only
+- name: list_direct_debits_specific_accounts
+  description: Get Direct Debits For Specific Accounts
+  source_operation: openapi/bank-of-queensland-banking-account-direct-debits-api-openapi.yml#listDirectDebitsSpecificAccounts
+  http: POST /banking/accounts/direct-debits
+  access: cdr-accredited-data-recipient-only
+- name: list_scheduled_payments
+  description: Get Scheduled Payments for Account
+  source_operation: openapi/bank-of-queensland-banking-account-scheduled-payments-api-openapi.yml#listScheduledPayments
+  http: GET /banking/accounts/{accountId}/payments/scheduled
+  access: cdr-accredited-data-recipient-only
+- name: list_scheduled_payments_bulk
+  description: Get Scheduled Payments Bulk
+  source_operation: openapi/bank-of-queensland-banking-account-scheduled-payments-api-openapi.yml#listScheduledPaymentsBulk
+  http: GET /banking/payments/scheduled
+  access: cdr-accredited-data-recipient-only
+- name: list_scheduled_payments_specific_accounts
+  description: Get Scheduled Payments For Specific Accounts
+  source_operation: openapi/bank-of-queensland-banking-account-scheduled-payments-api-openapi.yml#listScheduledPaymentsSpecificAccounts
+  http: POST /banking/payments/scheduled
+  access: cdr-accredited-data-recipient-only
+- name: list_instalment_plans
+  description: Get Instalment Plans for Account
+  source_operation: openapi/bank-of-queensland-banking-account-scheduled-payments-api-openapi.yml#listInstalmentPlans
+  http: GET /banking/accounts/{accountId}/payments/plans
+  access: cdr-accredited-data-recipient-only
+- name: list_instalment_plans_bulk
+  description: Get Instalment Plans Bulk
+  source_operation: openapi/bank-of-queensland-banking-account-scheduled-payments-api-openapi.yml#listInstalmentPlansBulk
+  http: GET /banking/accounts/payments/plans
+  access: cdr-accredited-data-recipient-only
+- name: list_banking_transactions
+  description: Get Transactions For Account
+  source_operation: openapi/bank-of-queensland-banking-account-transactions-api-openapi.yml#listBankingTransactions
+  http: GET /banking/accounts/{accountId}/transactions
+  access: cdr-accredited-data-recipient-only
+- name: get_banking_transaction_detail
+  description: Get Transaction Detail
+  source_operation: openapi/bank-of-queensland-banking-account-transactions-api-openapi.yml#getBankingTransactionDetail
+  http: GET /banking/accounts/{accountId}/transactions/{transactionId}
+  access: cdr-accredited-data-recipient-only
+- name: list_banking_accounts
+  description: Get Accounts
+  source_operation: openapi/bank-of-queensland-banking-accounts-api-openapi.yml#listBankingAccounts
+  http: GET /banking/accounts
+  access: cdr-accredited-data-recipient-only
+- name: get_banking_account_detail
+  description: Get Account Detail
+  source_operation: openapi/bank-of-queensland-banking-accounts-api-openapi.yml#getBankingAccountDetail
+  http: GET /banking/accounts/{accountId}
+  access: cdr-accredited-data-recipient-only
+- name: list_banking_payees
+  description: Get Payees
+  source_operation: openapi/bank-of-queensland-banking-payees-api-openapi.yml#listBankingPayees
+  http: GET /banking/payees
+  access: cdr-accredited-data-recipient-only
+- name: get_banking_payee_detail
+  description: Get Payee Detail
+  source_operation: openapi/bank-of-queensland-banking-payees-api-openapi.yml#getBankingPayeeDetail
+  http: GET /banking/payees/{payeeId}
+  access: cdr-accredited-data-recipient-only
+- name: list_banking_products
+  description: Get Products
+  source_operation: openapi/bank-of-queensland-banking-products-api-openapi.yml#listBankingProducts
+  http: GET /banking/products
+  access: public-unauthenticated
+- name: get_banking_product_detail
+  description: Get Product Detail
+  source_operation: openapi/bank-of-queensland-banking-products-api-openapi.yml#getBankingProductDetail
+  http: GET /banking/products/{productId}
+  access: public-unauthenticated
+notes: No server exists. Only the two Product Reference Data tools could be exposed openly; every other
+  tool backs a CDR consumer-data endpoint that requires ACCC accreditation as an Accredited Data Recipient,
+  FAPI OAuth2/OIDC consent and mTLS, so they are listed for completeness, not as an open agent surface.

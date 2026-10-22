@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bank of Queensland CDR Banking Banking Account Direct Debits
+    API
+  version: 1.0.0
+extends: openapi/bank-of-queensland-banking-account-direct-debits-api-openapi.yml
+generated: '2026-10-20'
+method: generated
+source: openapi/bank-of-queensland-banking-account-direct-debits-api-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: bank-of-queensland
+    x-apievangelist-spec-provenance: Shared DSB Consumer Data Standards CDR Banking API v1.36.0, implemented
+      by BOQ as a CDR data holder; not a BOQ-proprietary contract.
+    x-apievangelist-access: cdr-accredited-data-recipient-only
+- target: $.paths['/banking/accounts/{accountId}/direct-debits'].get
+  update:
+    x-apievangelist-access: cdr-accredited-data-recipient-only
+    x-apievangelist-required-headers:
+    - x-v
+- target: $.paths['/banking/accounts/direct-debits'].get
+  update:
+    x-apievangelist-access: cdr-accredited-data-recipient-only
+    x-apievangelist-required-headers:
+    - x-v
+- target: $.paths['/banking/accounts/direct-debits'].post
+  update:
+    x-apievangelist-access: cdr-accredited-data-recipient-only
+    x-apievangelist-required-headers:
+    - x-v
