@@ -1,4 +1,4 @@
-# Bank of Queensland (bank-of-queensland)
+# Bank of Queensland
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,56 +64,182 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Bank of Queensland Limited (ASX: BOQ) is one of Australia's oldest banks, founded in Brisbane in 1874, and today an APRA-regulated authorised deposit-taking institution (ADI) and ASX-listed regional retail and commercial bank - a publicly listed company, not a customer-owned mutual. Its banking group includes the ME Bank, Virgin Money Australia and BOQ Specialist brands. As an accredited Consumer Data Right (CDR) data holder, BOQ exposes a public, unauthenticated Product Reference Data (PRD) API that conforms to the Australian Consumer Data Standards, while consumer data sharing runs through the regulated CDR / Accredited Data Recipient (ADR) model with OAuth2 / OIDC (FAPI) authorization.
+Bank of Queensland Limited (ASX code BOQ) is one of Australia's oldest banks, founded in Brisbane in 1874, and today an APRA-regulated authorised deposit-taking institution (ADI) and ASX-listed regional retail and commercial bank - a publicly listed company, not a customer-owned mutual. Its banking group includes the ME Bank, Virgin Money Australia and BOQ Specialist brands. As an accredited Consumer Data Right (CDR) data holder, BOQ exposes a public, unauthenticated Product Reference Data (PRD) API that conforms to the Australian Consumer Data Standards, while consumer data sharing runs through the regulated CDR / Accredited Data Recipient (ADR) model with OAuth2 / OIDC (FAPI) authorization.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bank-of-queensland/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bank-of-queensland/refs/heads/main/apis.yml)
+**Areas:** Finance · Banks · Open Banking · CDR · Consumer Banking · Australia · Product Reference Data · ADI
 
-## Tags
+## Bank of Queensland on APIs.io
 
-- Financial
-- Banks
-- Open Banking
-- CDR
-- Consumer Banking
-- Australia
-- Product Reference Data
-- ADI
+Everything profiled for Bank of Queensland is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bank-of-queensland/](https://apis.io/providers/bank-of-queensland/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2026-07-20
-- **Modified:** 2026-07-20
+- [Bank of Queensland Banking Account Balances API](https://apis.io/apis/bank-of-queensland/bank-of-queensland-banking-account-balances-api/) — Banking Account Balance endpoints
+- [Bank of Queensland Banking Account Direct Debits API](https://apis.io/apis/bank-of-queensland/bank-of-queensland-banking-account-direct-debits-api/) — Banking Account Direct Debit endpoints
+- [Bank of Queensland Banking Account Scheduled Payments API](https://apis.io/apis/bank-of-queensland/bank-of-queensland-banking-account-scheduled-payments-api/) — Banking Account Scheduled Payment endpoints
+- [Bank of Queensland Banking Account Transactions API](https://apis.io/apis/bank-of-queensland/bank-of-queensland-banking-account-transactions-api/) — Banking Account Transaction endpoints
+- [Bank of Queensland Banking Accounts API](https://apis.io/apis/bank-of-queensland/bank-of-queensland-banking-accounts-api/) — Banking Account endpoints
+- [Bank of Queensland Banking Payees API](https://apis.io/apis/bank-of-queensland/bank-of-queensland-banking-payees-api/) — Banking Payee endpoints
+- [Bank of Queensland Banking Products API](https://apis.io/apis/bank-of-queensland/bank-of-queensland-banking-products-api/) — Banking Product endpoints
 
-## APIs
+### Published properties
 
-### Bank of Queensland (BOQ) CDR Product Reference Data API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Public, unauthenticated Consumer Data Right (CDR) Product Reference Data API exposing BOQ's banking products (accounts, term deposits, loans, cards) in machine-readable form under the Australian Consumer Data Standards. Confirmed live at `https://secure.api.boq.com.au/cds-au/v1/banking/products` (HTTP 200, x-v 3) returning a `data.products` array. Endpoints - `GET /banking/products` and `GET /banking/products/{productId}`.
+#### MCP servers (1)
 
-- **Human URL:** [https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking](https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking)
-- **Base URL:** `https://secure.api.boq.com.au/cds-au/v1`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [bank-of-queensland-prd](https://apis.io/servers/bank-of-queensland/bank-of-queensland-prd/)
 
-- CDR
-- Open Banking
-- Product Reference Data
-- Banking
-- Australia
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking)
-- [API Reference](https://consumerdatastandardsaustralia.github.io/standards/#product-reference-data)
-- [OpenAPI](openapi/bank-of-queensland-cds-banking-products-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Bank Of Queensland Agentic Access](https://apis.io/agentic-access/bank-of-queensland/bank-of-queensland-agentic-access/)
 
-## Common Properties
+#### JSON Schema (13)
+
+The data models the API reads and writes.
+
+- [ResponseBankingAccountByIdV5](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-account-by-id-v5/)
+- [ResponseBankingAccountListV3](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-account-list-v3/)
+- [ResponseBankingAccountsBalanceById](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-accounts-balance-by-id/)
+- [ResponseBankingAccountsBalanceList](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-accounts-balance-list/)
+- [ResponseBankingDirectDebitAuthorisationList](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-direct-debit-authorisation-list/)
+- [ResponseBankingInstalmentPlanList](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-instalment-plan-list/)
+- [ResponseBankingPayeeByIdV2](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-payee-by-id-v2/)
+- [ResponseBankingPayeeListV2](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-payee-list-v2/)
+- [ResponseBankingProductByIdV7](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-product-by-id-v7/)
+- [ResponseBankingProductListV4](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-product-list-v4/)
+- [ResponseBankingScheduledPaymentsListV2](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-scheduled-payments-list-v2/)
+- [ResponseBankingTransactionByIdV3](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-transaction-by-id-v3/)
+- [ResponseBankingTransactionListV2](https://apis.io/schemas/bank-of-queensland/bank-of-queensland-response-banking-transaction-list-v2/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Bank Of Queensland Context](https://apis.io/jsonld/bank-of-queensland/bank-of-queensland-context/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [CDR Banking Banking Account Balances API](https://apis.io/collections/bank-of-queensland/open-bank-of-queensland-banking-account-balances-api/)
+- [CDR Banking Banking Account Balances Banking Account Direct Debits API](https://apis.io/collections/bank-of-queensland/open-bank-of-queensland-banking-account-direct-debits-api/)
+- [CDR Banking Banking Account Balances Banking Account Scheduled Payments API](https://apis.io/collections/bank-of-queensland/open-bank-of-queensland-banking-account-scheduled-payments-api/)
+- [CDR Banking Banking Account Balances Banking Account Transactions API](https://apis.io/collections/bank-of-queensland/open-bank-of-queensland-banking-account-transactions-api/)
+- [CDR Banking Banking Account Balances Banking Accounts API](https://apis.io/collections/bank-of-queensland/open-bank-of-queensland-banking-accounts-api/)
+- [CDR Banking Banking Account Balances Banking Payees API](https://apis.io/collections/bank-of-queensland/open-bank-of-queensland-banking-payees-api/)
+- [CDR Banking Banking Account Balances Banking Products API](https://apis.io/collections/bank-of-queensland/open-bank-of-queensland-banking-products-api/)
+
+#### Overlays (7)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Bank Of Queensland Banking Account Balances Api Overlay](https://apis.io/overlays/bank-of-queensland/bank-of-queensland-banking-account-balances-api-overlay/)
+- [Bank Of Queensland Banking Account Direct Debits Api Overlay](https://apis.io/overlays/bank-of-queensland/bank-of-queensland-banking-account-direct-debits-api-overlay/)
+- [Bank Of Queensland Banking Account Scheduled Payments Api Overlay](https://apis.io/overlays/bank-of-queensland/bank-of-queensland-banking-account-scheduled-payments-api-overlay/)
+- [Bank Of Queensland Banking Account Transactions Api Overlay](https://apis.io/overlays/bank-of-queensland/bank-of-queensland-banking-account-transactions-api-overlay/)
+- [Bank Of Queensland Banking Accounts Api Overlay](https://apis.io/overlays/bank-of-queensland/bank-of-queensland-banking-accounts-api-overlay/)
+- [Bank Of Queensland Banking Payees Api Overlay](https://apis.io/overlays/bank-of-queensland/bank-of-queensland-banking-payees-api-overlay/)
+- [Bank Of Queensland Banking Products Api Overlay](https://apis.io/overlays/bank-of-queensland/bank-of-queensland-banking-products-api-overlay/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Bank of Queensland API Rules](https://apis.io/rules/bank-of-queensland/bank-of-queensland-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bank Of Queensland Authentication](https://apis.io/security/bank-of-queensland/bank-of-queensland-authentication/)
+- [Bank Of Queensland Domain Security](https://apis.io/security/bank-of-queensland/bank-of-queensland-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Bank Of Queensland Scopes](https://apis.io/scopes/bank-of-queensland/bank-of-queensland-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Bank Of Queensland Plans Pricing](https://apis.io/plans/bank-of-queensland/bank-of-queensland-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Bank Of Queensland Rate Limits](https://apis.io/rate-limits/bank-of-queensland/bank-of-queensland-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.boq.com.au/)
 - [Documentation](https://www.boq.com.au/personal/help-and-support/forms-and-important-information/open-banking)
-- [LinkedIn](https://www.linkedin.com/company/bank-of-queensland)
+- [Getting started](https://www.boq.com.au/personal/help-and-support/business/getting-started-business)
+- [Support](https://www.boq.com.au/personal/help-and-support/)
+- [Blog](https://www.boq.com.au/blog/)
+- [Terms of service](https://www.boq.com.au/personal/help-and-support/forms-and-important-information/terms-and-conditions/)
+- [Privacy policy](https://www.boq.com.au/personal/help-and-support/forms-and-important-information/privacy/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 52.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 58.3 |
+| Contract governance | 35.6 |
+| Operational transparency | 39.5 |
+| Developer ergonomics | 49.4 |
+| Access clarity | 42.1 |
+
+**Agent readiness 28.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 48.0** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bank-of-queensland/](https://apis.io/providers/bank-of-queensland/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bank of Queensland: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bank-of-queensland/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
